@@ -1,0 +1,40 @@
+Concept du jeu:
+
+-De chaque côté, 3 magiciens apparaissent à des positions aléatoires de leur zone.
+-Chaque magicien se dirigent vers la tour adverse la plus proche.
+-Si un magicien entre dans le champs de vision d'un autre, ils s'affrontent.
+-Lorsqu'il n'y a plus de magiciens dans son champs de vision, le magicien continue son chemin vers la tours la plus proche.
+-Lorsqu'une tour adverse apparait dans son champs de vision, le magicien va attaquer la tour.
+-Si un magicien entre dans son champs de vision lorsqu'il attaque la tour, il arrêter d'attaquer la tour et va l'affronter.
+-Lorsque la tour se détruit, il va se diriger vers l'autre tour adverse la plus proche.
+-Si toutes les tours d'un côté sont détruite, la partie se termine.
+
+
+États(Copier-coller de l'énoncé):
+
+o Normal. Le magicien avance vers une tour adverse, et engageant les ennemis s’il en 
+	rencontre. Si un ennemi entre dans sa portée, il le choisit comme cible et le garde 
+	comme cible jusqu’à ce qu’il soit éliminé ou qu’il fuit hors de portée.
+o Intrépide. Si le magicien a éliminé trois cibles, il devient confiant. Il se dirige 
+	toujours vers les tours. Il régénère même en combat. Il ne s’occupe plus de choisir 
+	une cible humaine, se concentrant sur les tours. Par contre, un ennemi qui vient de 
+	l’attaquer devient sa cible. À partir de ce moment-là, il garde toujours cette cible
+	jusqu’à ce qu’elle soit désactivée ou en fuite. Sa vitesse augmente légèrement.
+o Fuite. S’il lui reste moins de 25% de ses points de vie, un magicien va fuir vers ses 
+	lignes et recherche le point de couvert le plus prêt (tour ou forêt), et s’il en trouve un,
+	devient planqué ou en sureté, selon qu’il entre dans une forêt ou dans sa tour. En 
+	fuite, un magicien va toujours reculer vers ses lignes et n’entre jamais en combat. Sa 
+	vitesse augmente légèrement (un peu plus rapide qu’intrépide).
+o Planqué. Un magicien qui reste planqué en forêt reste immobile peu importe les 
+	circonstances jusqu’à ce qu’il ait remonté à 100% de ses points de vie OU s’il remonte 
+	à 50% de ses points de vie ET si un ennemi arrive à sa portée. (Si une de ces 
+	conditions se produit, il revient à normal). Il engage tout de même les ennemis qui 
+	vont passer à sa portée mais ne va jamais bouger. Il choisit toujours la cible 
+	potentielle la plus près, que celle-ci l’attaque en retour ou non, et s’il ne se bat pas, il 
+	régénère 2 fois plus vite que la normale. Un magicien peut rester planqué et subir 
+	une attaque si l’attaquant a une plus grande portée que lui. Un magicien planqué 
+	qui subit une attaque et retombe sous les 25% de point de vie se remet à fuir vers une 
+	planque plus proche de sa tour ou vers la tour elle-même. 
+o En sureté. Un magicien dans la tour ne peut plus attaquer ni se faire attaquer et
+	régénère 3 fois plus vite. Il ressort à 100% de ses points de vie, en état normal. Si pas 
+	de last stand et la tour est détruite, passe en état normal
