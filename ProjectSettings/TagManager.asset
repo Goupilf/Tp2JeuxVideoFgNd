@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Right Side Tower
+  - Left Side Tower
+  - Forest
   layers:
   - Default
   - TransparentFX
