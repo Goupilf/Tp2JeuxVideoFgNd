@@ -6,12 +6,14 @@ public class WizardManager : MonoBehaviour
 {
     [SerializeField] GameObject blueWizard;
     [SerializeField] GameObject greenWizard;
+    [SerializeField] BoxCollider2D blueZone;
+    [SerializeField] BoxCollider2D greenZone;
     public const int MAX_NB_WIZARD_EACH_SIDE = 20;
     public const float WIZARD_SPAWN_RATE = 5.0f;
     private const int GREEN = 0;
     private const int BLUE = 1;
-    private const int FIELD_WIDTH = 1280;
-    private const int FIELD_HEIGHT = 720;
+    private List<GameObject> greenWizs = new List<GameObject>();
+    private List<GameObject> blueWizs = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
@@ -27,23 +29,23 @@ public class WizardManager : MonoBehaviour
 
     private Vector2 getRandomPosition (int color)
     {
-        int minWidthValue = 0;
-        int maxWidthValue = 0;
-        int minHeightValue = 0;
-        int maxHeightValue = 0;
+        float minWidthValue = 0;
+        float maxWidthValue = 0;
+        float minHeightValue = 0;
+        float maxHeightValue = 0;
         if (color == GREEN)
         {
-            minWidthValue = -(FIELD_WIDTH / 2);
-            maxWidthValue = 0;
-            minHeightValue = FIELD_HEIGHT / 2;
-            maxHeightValue = -(FIELD_HEIGHT / 2);
+            minWidthValue = greenZone.bounds.min.x;
+            maxWidthValue = greenZone.bounds.max.x;
+            minHeightValue = greenZone.bounds.min.y;
+            maxHeightValue = greenZone.bounds.max.y;
         }
         else if(color == BLUE)
         {
-            minWidthValue = 0;
-            maxWidthValue = FIELD_WIDTH / 2;
-            minHeightValue = FIELD_HEIGHT / 2;
-            maxHeightValue = -(FIELD_HEIGHT / 2);
+            minWidthValue = blueZone.bounds.min.x;
+            maxWidthValue = blueZone.bounds.max.x;
+            minHeightValue = blueZone.bounds.min.y;
+            maxHeightValue = blueZone.bounds.max.y;
         }
         return new Vector2(Random.Range(minWidthValue, maxWidthValue), Random.Range(minHeightValue, maxHeightValue));
     }
