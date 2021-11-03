@@ -8,12 +8,16 @@ public class WizardManager : MonoBehaviour
     [SerializeField] GameObject greenWizard;
     [SerializeField] BoxCollider2D blueZone;
     [SerializeField] BoxCollider2D greenZone;
+    [SerializeField] private TowerManager towerManager;
     public const int MAX_NB_WIZARD_EACH_SIDE = 20;
     public const float WIZARD_SPAWN_RATE = 5.0f;
     private const int GREEN = 0;
     private const int BLUE = 1;
     private List<GameObject> greenWizs = new List<GameObject>();
     private List<GameObject> blueWizs = new List<GameObject>();
+    private const float TIME_FOR_SPAWN = 10;
+    private float spawnTimer = 0;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +28,13 @@ public class WizardManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        spawnTimer += Time.deltaTime;
+        if(spawnTimer > TIME_FOR_SPAWN)
+        {
+            spawnTimer = 0;
+            instantiateWizard(BLUE, towerManager.getRandomActifTower(BLUE), blueWizard);
+            instantiateWizard(GREEN, towerManager.getRandomActifTower(GREEN), greenWizard);
+        }
     }
 
     private Vector2 getRandomPosition (int color)
@@ -52,18 +62,18 @@ public class WizardManager : MonoBehaviour
 
     private void instantiateStartGame()
     {
-        instantiateWizard(BLUE, blueWizard);
-        instantiateWizard(BLUE, blueWizard);
-        instantiateWizard(BLUE, blueWizard);
-        instantiateWizard(GREEN, greenWizard);
-        instantiateWizard(GREEN, greenWizard);
-        instantiateWizard(GREEN, greenWizard);
+        instantiateWizard(BLUE, getRandomPosition(BLUE), blueWizard);
+        instantiateWizard(BLUE, getRandomPosition(BLUE), blueWizard);
+        instantiateWizard(BLUE, getRandomPosition(BLUE), blueWizard);
+        instantiateWizard(GREEN, getRandomPosition(GREEN), greenWizard);
+        instantiateWizard(GREEN, getRandomPosition(GREEN), greenWizard);
+        instantiateWizard(GREEN, getRandomPosition(GREEN), greenWizard);
     }
 
-    private void instantiateWizard(int color, GameObject prefab)
+    private void instantiateWizard(int color, Vector2 position, GameObject prefab)
     {
         GameObject wiz = Instantiate<GameObject>(prefab);
-        wiz.transform.position = getRandomPosition(color);
+        wiz.transform.position = position;
         wiz.SetActive(true);
     }
 }
