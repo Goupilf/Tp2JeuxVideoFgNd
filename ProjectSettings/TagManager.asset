@@ -4,9 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Right Side Tower
-  - Left Side Tower
   - Forest
+  - Blue Wizard
+  - Green Wizard
+  - Blue Side Tower
+  - Green Side Tower
   layers:
   - Default
   - TransparentFX
