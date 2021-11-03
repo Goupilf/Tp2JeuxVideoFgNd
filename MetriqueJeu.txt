@@ -38,3 +38,58 @@ o Planqué. Un magicien qui reste planqué en forêt reste immobile peu importe 
 o En sureté. Un magicien dans la tour ne peut plus attaquer ni se faire attaquer et
 	régénère 3 fois plus vite. Il ressort à 100% de ses points de vie, en état normal. Si pas 
 	de last stand et la tour est détruite, passe en état normal
+
+
+Liste des tâches
+
+-Faire la liste des tâches
+-Faire le schéma des états
+-Mettre en place la scène de départ
+	-Trouvé et placer les sprites de forêts, tours, terrain
+	-Placé des tags sur les forêts et tours
+-Mettre en place l'apparition des magiciens
+	-Faire un script gameManager pour l'apparision des magiciens
+	-Au début de la scène, 3 magiciens doivent apparaitre de chaque côté à des positions aléatoire.
+	-Des magiciens doivent apparaitre à partir des tours à un rythme régulier
+	-Un nombre maximum fixe de magicien doit être fixé pour chaque équipe
+-Mettre en place le déplacement du magicien
+	-Faire un préfab de magicien et lui donner un script de déplacement
+	-Un magicien doit se déplacer vers la tour adverse la plus proche
+-Mettre en place le combat du magicien
+	-Un magicien qui entre dans le champs de vision d'un autre doit entrer en combat.
+	-Une cadence de tir doit être fixé
+	-Un nombre de point de vie doit être fixé
+	-Un nombre de dégât aléatoire doit être mis en place
+	-Une mort de magicien doit être possible.
+	-Un magicien doit pouvoir continuer son chemin après son combat.
+-Mettre en place le ui et le gamemanager
+	-Le nombre de magicien actif doit être visible au dessus de chaque camps.
+	-Les points de vie restant des tours doit être visible dessus chaque tour.
+	-À la fin de la partie, un message doit afficher qui donne l'équipe gagnante.
+-Mettre en place l'état planqué et le comportement dans les forêts
+	-Un magicien qui entre dans un forêt ne doit plus se déplacer
+	-Un magicien planqué doit pouvoir se regénérer lorsqu'il n'attaque personne.
+	-Un magicien planqué doit pouvoir retourné en état normal une fois pleinement regénéré.
+	-Un magicien planqué doit pouvoir attaquer les ennemis proches
+	-Un magicien planqué doit pouvoir fuir vers sa tour lorsqu'il est attaqué et blessé.
+-Mettre en place le comportement en fuite
+	-Un magicien blessé doit pouvoir fuir vers la forêt la plus proche
+	-Un magicien planqué qui se fait attaquer lorsqu'il est blessé doit pouvoir fuir vers sa tour la plus proche.
+-Mettre en place le comportement intrépide
+	-Un magicien qui a éliminé x nombre d'adversaire doit pouvoir entré en état intrépide.
+	-Un magicien en état intrépide doit pouvoir avoir un bonus de vitesse
+	-Un magicien intrépide doit ignorer les ennemis humains excepté lorsqu'il est attaqué par l'un d'entre eux
+	-Un magicien intrépide doit se déplacé vers la tour la plus proche et l'attaqué
+-Mettre en place le comportement en sureté
+	-Un magicien en sureté doit pouvoir se regénérer x nombre de fois plus vite.
+	-Un magicien en sureté ne doit plus pouvoir attaqué et se déplacer.
+	-Un magicien en sureté doit retourner en état normal lorsque sa tour se fait détruire ou lorsqu'il est pleinement regénéré.
+
+
+BONUS
+-Mettre en place le sound manager
+	-Un magicien qui tir doit faire un son
+	-Une tour détruite doit faire un son
+	-Un magicien qui meurt doit faire un son
+	-Une musique ambiante doit jouer
+	-Une musique de fin de partie doit jouer
