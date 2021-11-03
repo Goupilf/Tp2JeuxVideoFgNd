@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4354541346098780899}
   m_Layer: 0
   m_Name: Right Side Tower
-  m_TagString: Green Wizard
+  m_TagString: Green Side Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
