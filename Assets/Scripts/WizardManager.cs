@@ -9,31 +9,47 @@ public class WizardManager : MonoBehaviour
     [SerializeField] BoxCollider2D blueZone;
     [SerializeField] BoxCollider2D greenZone;
     [SerializeField] private TowerManager towerManager;
-    public const int MAX_NB_WIZARD_EACH_SIDE = 20;
+    public int MAX_NB_WIZARD_EACH_SIDE = 5;
+    public float TIME_FOR_SPAWN = 5;
     public const float WIZARD_SPAWN_RATE = 5.0f;
     private const int GREEN = 0;
     private const int BLUE = 1;
     private List<GameObject> greenWizs = new List<GameObject>();
     private List<GameObject> blueWizs = new List<GameObject>();
-    private const float TIME_FOR_SPAWN = 10;
     private float spawnTimer = 0;
-    
+    private string blueWizardTag = "Blue Wizard";
+    private string greenWizardTag = "Green Wizard";
 
     // Start is called before the first frame update
     void Start()
     {
         instantiateStartGame();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+
         spawnTimer += Time.deltaTime;
         if(spawnTimer > TIME_FOR_SPAWN)
         {
             spawnTimer = 0;
-            instantiateWizard(BLUE, towerManager.getRandomActifTowerPosition(BLUE), blueWizard);
-            instantiateWizard(GREEN, towerManager.getRandomActifTowerPosition(GREEN), greenWizard);
+            initializeWizLists();
+            if (blueWizs.Count < MAX_NB_WIZARD_EACH_SIDE)
+            {
+                if(!setInactiveWizardFromList(blueWizs, BLUE))
+                {
+                    instantiateWizard(BLUE, towerManager.getRandomActifTowerPosition(BLUE), blueWizard);
+                }
+            }
+            if (greenWizs.Count < MAX_NB_WIZARD_EACH_SIDE)
+            {
+                if (!setInactiveWizardFromList(greenWizs, GREEN))
+                {
+                    instantiateWizard(GREEN, towerManager.getRandomActifTowerPosition(GREEN), greenWizard);
+                }
+            }
         }
     }
 
@@ -75,5 +91,35 @@ public class WizardManager : MonoBehaviour
         GameObject wiz = Instantiate<GameObject>(prefab);
         wiz.transform.position = position;
         wiz.SetActive(true);
+    }
+
+    private bool setInactiveWizardFromList(List<GameObject> wizList, int color)
+    {
+        for(int i = 0; i < wizList.Count; i++)
+        {
+            if (!wizList[i].activeInHierarchy)
+            {
+                wizList[i].SetActive(true);
+                wizList[i].transform.position = towerManager.getRandomActifTowerPosition(color);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void initializeWizLists()
+    {
+      GameObject[] greenWizArray = GameObject.FindGameObjectsWithTag(greenWizardTag);
+      GameObject[] blueWizArray = GameObject.FindGameObjectsWithTag(blueWizardTag);
+      greenWizs.Clear();
+      blueWizs.Clear();
+      for (int i = 0; i < greenWizArray.Length; i++)
+      {
+          greenWizs.Add(greenWizArray[i]);
+      }
+      for (int i = 0; i < blueWizArray.Length; i++)
+      {
+          blueWizs.Add(blueWizArray[i]);
+      }
     }
 }

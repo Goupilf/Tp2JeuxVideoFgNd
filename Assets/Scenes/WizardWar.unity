@@ -334,6 +334,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &179004475 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2230067264639386866, guid: 902fc756fadeba34093cdb1aebf01dc2, type: 3}
+  m_PrefabInstance: {fileID: 1890542797}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eac6311ba2fead7449f424cca6a110bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &237751674 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5546560333391333681, guid: 7e71155e1de77d34d80f71c25cb1701f, type: 3}
@@ -1108,6 +1119,10 @@ PrefabInstance:
       propertyPath: greenZone
       value: 
       objectReference: {fileID: 1578367087}
+    - target: {fileID: 6462494243169263240, guid: 544f4acb894cab64a80707f35cde7717, type: 3}
+      propertyPath: towerManager
+      value: 
+      objectReference: {fileID: 179004475}
     - target: {fileID: 6548158328750541967, guid: 544f4acb894cab64a80707f35cde7717, type: 3}
       propertyPath: m_Name
       value: WizardManager
