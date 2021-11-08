@@ -55,4 +55,9 @@ public class TowerManager : MonoBehaviour
         }
         return towerList[Random.Range(0, actifElementsPosition.Count)].transform.position;
     }
+
+    public GameObject getClosestActiveTower()
+    {
+        return null;
+    }
 }
