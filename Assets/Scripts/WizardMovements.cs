@@ -14,8 +14,11 @@ public class WizardMovements : MonoBehaviour
     private float moveSpeed = 1;
     private float step;
     private GameObject[] list;
+    private TowerManager towerManager;
     void Start()
     {
+        GameObject test = GameObject.FindGameObjectWithTag("TowerManager");
+        towerManager = test.GetComponent<TowerManager>();
         tag = gameObject.tag;
     }
 
@@ -35,31 +38,7 @@ public class WizardMovements : MonoBehaviour
 
     private void MoveTowards(string wizardTag)
     {
-        string towerTag = "";
-        
-        if (wizardTag == blueWizardTag)
-        {
-            towerTag = blueTowerTag;
-        }
-        else if (wizardTag == greenWizardTag)
-        {
-            towerTag = greenTowerTag;
-        }
-
-        list = GameObject.FindGameObjectsWithTag(towerTag);
-        
-        GameObject closestTower = list[1];
-        float dist = 9999;
-        for (int i = 0; i < list.Length; i++)
-        {
-           float tempdist = Vector3.Distance(transform.position, list[i].transform.position);
-            if (tempdist < dist)
-            {
-                dist = tempdist;
-                closestTower = list[i]; 
-            }
-
-        }
+        GameObject closestTower = towerManager.getClosestActiveTower(wizardTag, transform);
         transform.position = Vector3.MoveTowards(transform.position, closestTower.transform.position, step);
     }
 }

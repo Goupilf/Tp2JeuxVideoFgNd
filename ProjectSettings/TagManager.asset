@@ -9,6 +9,7 @@ TagManager:
   - Green Wizard
   - Blue Side Tower
   - Green Side Tower
+  - TowerManager
   layers:
   - Default
   - TransparentFX

@@ -986,6 +986,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TowerManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7776607575037212929, guid: 902fc756fadeba34093cdb1aebf01dc2, type: 3}
+      propertyPath: m_TagString
+      value: TowerManager
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 902fc756fadeba34093cdb1aebf01dc2, type: 3}
 --- !u!1 &1950057060
