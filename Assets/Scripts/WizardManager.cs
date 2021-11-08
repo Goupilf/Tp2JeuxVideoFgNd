@@ -30,7 +30,6 @@ public class WizardManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         spawnTimer += Time.deltaTime;
         if(spawnTimer > TIME_FOR_SPAWN)
         {
