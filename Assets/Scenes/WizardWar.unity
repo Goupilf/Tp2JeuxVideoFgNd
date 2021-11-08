@@ -1345,6 +1345,57 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4354541346098780900, guid: 6106a59becaaa7a40b3dd684ec7e7119, type: 3}
   m_PrefabInstance: {fileID: 105360490}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1391872596
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1391872598}
+  - component: {fileID: 1391872597}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1391872597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1391872596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcbd2812e71a8de4796ca34b76159737, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nbGreenWizardText: {fileID: 395779471}
+  nbBlueWizardText: {fileID: 1542073808}
+  greenTower1LiveText: {fileID: 1556344966}
+  greenTower2LiveText: {fileID: 1155209561}
+  greenTower3LiveText: {fileID: 1566254274}
+  blueTower1LiveText: {fileID: 1307561468}
+  blueTower2LiveText: {fileID: 1172131244}
+  blueTower3LiveText: {fileID: 1996411581}
+--- !u!4 &1391872598
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1391872596}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.2415514, y: 0.23334664, z: -846.1372}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1475577064
 GameObject:
   m_ObjectHideFlags: 0
