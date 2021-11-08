@@ -49,7 +49,6 @@ public class WizardMovements : MonoBehaviour
         list = GameObject.FindGameObjectsWithTag(towerTag);
         
         GameObject closestTower = list[1];
-        Debug.Log(closestTower);
         float dist = 9999;
         for (int i = 0; i < list.Length; i++)
         {

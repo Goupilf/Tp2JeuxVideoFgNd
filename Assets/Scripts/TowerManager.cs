@@ -4,39 +4,30 @@ using UnityEngine;
 
 public class TowerManager : MonoBehaviour
 {
-    [SerializeField] private GameObject blueTower1;
-    [SerializeField] private GameObject blueTower2;
-    [SerializeField] private GameObject blueTower3;
-    [SerializeField] private GameObject greenTower1;
-    [SerializeField] private GameObject greenTower2;
-    [SerializeField] private GameObject greenTower3;
     private const int NB_TOWER_EACH_SIDE = 3;
     private const int GREEN = 0;
     private const int BLUE = 1;
-    private List<GameObject> blueTowers = new List<GameObject>();
-    private List<GameObject> greenTowers = new List<GameObject>();
-    [SerializeField] private GameObject tower;
+    private GameObject[] blueTowers;
+    private GameObject[] greenTowers;
+    private string blueTowerTag = "Blue Side Tower";
+    private string greenTowerTag = "Green Side Tower";
 
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < NB_TOWER_EACH_SIDE; i++)
-        {
-            //blueTowers.Add(blueTowerArray[i]);
-            //greenTowers.Add(greenTowerArray[i]);
-        }
-        
+        blueTowers = GameObject.FindGameObjectsWithTag(blueTowerTag);
+        greenTowers = GameObject.FindGameObjectsWithTag(greenTowerTag);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+       
     }
 
     public Vector2 getRandomActifTower(int color)
     {
-        List<GameObject> towerList = new List<GameObject>();
+        GameObject[] towerList = new GameObject[NB_TOWER_EACH_SIDE];
         if (color == BLUE)
         {
             towerList = blueTowers;
@@ -46,13 +37,14 @@ public class TowerManager : MonoBehaviour
             towerList = greenTowers;
         }
         List<int> actifElementsPosition=new List<int>();
-        for(int i=0;i<towerList.Count; i++)
+        for(int i=0;i<towerList.Length; i++)
         {
             if (towerList[i].activeInHierarchy)
             {
                 actifElementsPosition.Add(i);
             }
         }
-        return towerList[Random.Range(0, actifElementsPosition.Count)].transform.position;
+        int randomTowerIndex = actifElementsPosition[Random.Range(0, actifElementsPosition.Count)];
+        return towerList[randomTowerIndex].transform.position;
     }
 }

@@ -45,3 +45,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blueWizard: {fileID: 1640789812387011073, guid: ef49ceb657d300348b01642b3b7df885, type: 3}
   greenWizard: {fileID: 2552958872035428097, guid: b1722e5ccd5a9234db497952b8eee225, type: 3}
+  blueZone: {fileID: 0}
+  greenZone: {fileID: 0}
+  towerManager: {fileID: 2230067264639386866, guid: 902fc756fadeba34093cdb1aebf01dc2, type: 3}
