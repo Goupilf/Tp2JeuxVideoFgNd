@@ -4,12 +4,6 @@ using UnityEngine;
 
 public class TowerManager : MonoBehaviour
 {
-    [SerializeField] private GameObject blueTower1;
-    [SerializeField] private GameObject blueTower2;
-    [SerializeField] private GameObject blueTower3;
-    [SerializeField] private GameObject greenTower1;
-    [SerializeField] private GameObject greenTower2;
-    [SerializeField] private GameObject greenTower3;
     private const int NB_TOWER_EACH_SIDE = 3;
     private const int GREEN = 0;
     private const int BLUE = 1;
@@ -24,23 +18,19 @@ public class TowerManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < NB_TOWER_EACH_SIDE; i++)
-        {
-            //blueTowers.Add(blueTowerArray[i]);
-            //greenTowers.Add(greenTowerArray[i]);
-        }
-        
+        blueTowers = GameObject.FindGameObjectsWithTag(blueTowerTag);
+        greenTowers = GameObject.FindGameObjectsWithTag(greenTowerTag);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+       
     }
 
     public Vector2 getRandomActifTower(int color)
     {
-        List<GameObject> towerList = new List<GameObject>();
+        GameObject[] towerList = new GameObject[NB_TOWER_EACH_SIDE];
         if (color == BLUE)
         {
             towerList = blueTowers;
@@ -50,20 +40,22 @@ public class TowerManager : MonoBehaviour
             towerList = greenTowers;
         }
         List<int> actifElementsPosition=new List<int>();
-        for(int i=0;i<towerList.Count; i++)
+        for(int i=0;i<towerList.Length; i++)
         {
             if (towerList[i].activeInHierarchy)
             {
                 actifElementsPosition.Add(i);
             }
         }
-        return towerList[Random.Range(0, actifElementsPosition.Count)].transform.position;
+        int randomTowerIndex = actifElementsPosition[Random.Range(0, actifElementsPosition.Count)];
+        return towerList[randomTowerIndex].transform.position;
     }
 
-    public GameObject getClosestActiveTower(string wizardTag)
+    public GameObject getClosestActiveTower(string wizardTag, Transform position)
     {
         string towerTag = "";
-        GameObject[] list;
+        GameObject[] list ;
+        list = blueTowers; //
 
         if (wizardTag == blueWizardTag)
         {
@@ -76,15 +68,13 @@ public class TowerManager : MonoBehaviour
             list = greenTowers;
         }
 
-        //list = GameObject.FindGameObjectsWithTag(towerTag);
-
         GameObject closestTower = list[1];
 
         float dist = 9999;
         for (int i = 0; i < list.Length; i++)
         {
-            float tempdist = Vector3.Distance(transform.position, list[i].transform.position);
-            if (tempdist < dist)
+            float tempdist = Vector3.Distance(position.position, list[i].transform.position);
+            if (tempdist < dist && list[i].activeSelf)
             {
                 dist = tempdist;
                 closestTower = list[i];
