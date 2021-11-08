@@ -32,8 +32,8 @@ public class WizardManager : MonoBehaviour
         if(spawnTimer > TIME_FOR_SPAWN)
         {
             spawnTimer = 0;
-            instantiateWizard(BLUE, towerManager.getRandomActifTower(BLUE), blueWizard);
-            instantiateWizard(GREEN, towerManager.getRandomActifTower(GREEN), greenWizard);
+            instantiateWizard(BLUE, towerManager.getRandomActifTowerPosition(BLUE), blueWizard);
+            instantiateWizard(GREEN, towerManager.getRandomActifTowerPosition(GREEN), greenWizard);
         }
     }
 
