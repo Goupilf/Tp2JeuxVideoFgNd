@@ -47,4 +47,9 @@ public class TowerManager : MonoBehaviour
         int randomTowerIndex = actifElementsPosition[Random.Range(0, actifElementsPosition.Count)];
         return towerList[randomTowerIndex].transform.position;
     }
+
+    public GameObject getClosestActiveTower()
+    {
+        return null;
+    }
 }
