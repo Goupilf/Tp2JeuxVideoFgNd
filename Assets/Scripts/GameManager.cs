@@ -5,14 +5,17 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] Text nbGreenWizardText;
-    [SerializeField] Text nbBlueWizardText;
-    [SerializeField] Text greenTower1LiveText;
-    [SerializeField] Text greenTower2LiveText;
-    [SerializeField] Text greenTower3LiveText;
-    [SerializeField] Text blueTower1LiveText;
-    [SerializeField] Text blueTower2LiveText;
-    [SerializeField] Text blueTower3LiveText;
+    [SerializeField] private Text nbGreenWizardText;
+    [SerializeField] private Text nbBlueWizardText;
+    [SerializeField] private Text greenTower1LiveText;
+    [SerializeField] private Text greenTower2LiveText;
+    [SerializeField] private Text greenTower3LiveText;
+    [SerializeField] private Text blueTower1LiveText;
+    [SerializeField] private Text blueTower2LiveText;
+    [SerializeField] private Text blueTower3LiveText;
+    [SerializeField] private Text greenWinText;
+    [SerializeField] private Text blueWinText;
+
     // Start is called before the first frame update
     void Start()
     {
