@@ -11,30 +11,15 @@ public abstract class WizardState : MonoBehaviour
         wizardManager = GetComponent<WizardManager>();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
         
     }
 
-    void MoveToward()
-    {
+    public abstract void MoveToward();
 
-    }
+    public abstract void Battle();
 
-    void Battle()
-    {
-
-    }
-
-    void ManageStateChange()
-    {
-
-    }
+    public abstract void ManageStateChange();
 }
