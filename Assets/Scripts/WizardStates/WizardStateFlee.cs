@@ -43,7 +43,8 @@ public class WizardStateFlee : WizardState
 
     public override void ManageStateChange()
     {
-        
+        wizardManager.ChangeWizardState(WizardManager.WizardStateToSwitch.Hide);
+        wizardManager.ChangeWizardState(WizardManager.WizardStateToSwitch.Safety);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -64,12 +65,11 @@ public class WizardStateFlee : WizardState
         for (int i = 0; i < gameObjectArray.Length; i++)
         {
             float tempdist = Vector3.Distance(this.transform.position, gameObjectArray[i].transform.position);
-            if (tempdist < dist && gameObjectArray[i].activeInHierarchy)
+            if (tempdist < dist && gameObjectArray[i].activeInHierarchy && gameObjectArray[i]!=ignoreObject)
             {
                 dist = tempdist;
                 closestObject = gameObjectArray[i];
             }
-
         }
         return closestObject;
     }

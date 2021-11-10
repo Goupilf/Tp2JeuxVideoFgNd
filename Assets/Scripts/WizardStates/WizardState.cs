@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class WizardState : MonoBehaviour
 {
     protected WizardManager wizardManager;
+    protected GameObject ignoreObject;
 
     private void Awake()
     {
