@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CombatManager : MonoBehaviour
 {
+    [SerializeField] GameObject blueProjectile;
+    [SerializeField] GameObject greenProjectile;
     // Start is called before the first frame update
     void Start()
     {
