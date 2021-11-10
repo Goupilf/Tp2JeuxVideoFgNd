@@ -15,11 +15,12 @@ public class WizardMovements : MonoBehaviour
     private float step;
     private TowerManager towerManager;
     private bool inCombat;
-    public Rigidbody2D projectile;
+    private CombatManager combatManager;
     void Start()
     {
         inCombat = false;
         towerManager = GameObject.FindGameObjectWithTag("TowerManager").GetComponent<TowerManager>();
+        combatManager = GameObject.FindGameObjectWithTag("CombatManager").GetComponent<CombatManager>();
         tag = gameObject.tag;
     }
 
@@ -50,9 +51,8 @@ public class WizardMovements : MonoBehaviour
     {
         if (collision.gameObject.tag == blueWizardTag && gameObject.tag == greenWizardTag)//green wizard entre en collision avec blue wiz
         {
-            Debug.Log("test");
             inCombat = true;
-            Fire(gameObject,collision.gameObject);
+            //combatManager.Fire(gameObject,collision.gameObject);
 
         }
         else if (collision.gameObject.tag == blueTowerTag && gameObject.tag == greenWizardTag)//green wizard entre en collision avec blue tower
@@ -73,9 +73,5 @@ public class WizardMovements : MonoBehaviour
         }
     }
 
-    private void Fire(GameObject gameObject, GameObject collision)
-    {
-        Rigidbody2D test = Instantiate(projectile, new Vector3(transform.position.x, transform.position.y, transform.position.z), transform.rotation) as Rigidbody2D;
-        test.position = Vector3.MoveTowards(test.position, collision.transform.position, step);
-    }
+    
 }
