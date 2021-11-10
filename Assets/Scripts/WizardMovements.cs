@@ -13,12 +13,14 @@ public class WizardMovements : MonoBehaviour
     private string greenTowerTag = "Green Side Tower";
     private float moveSpeed = 1;
     private float step;
-    private GameObject[] list;
     private TowerManager towerManager;
+    private bool inCombat;
+    private CombatManager combatManager;
     void Start()
     {
-        GameObject test = GameObject.FindGameObjectWithTag("TowerManager");
-        towerManager = test.GetComponent<TowerManager>();
+        inCombat = false;
+        towerManager = GameObject.FindGameObjectWithTag("TowerManager").GetComponent<TowerManager>();
+        combatManager = GameObject.FindGameObjectWithTag("CombatManager").GetComponent<CombatManager>();
         tag = gameObject.tag;
     }
 
@@ -39,6 +41,37 @@ public class WizardMovements : MonoBehaviour
     private void MoveTowards(string wizardTag)
     {
         GameObject closestTower = towerManager.getClosestActiveTower(wizardTag, transform);
-        transform.position = Vector3.MoveTowards(transform.position, closestTower.transform.position, step);
+        if (inCombat == false)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, closestTower.transform.position, step);
+        }
+        
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == blueWizardTag && gameObject.tag == greenWizardTag)//green wizard entre en collision avec blue wiz
+        {
+            inCombat = true;
+            //combatManager.Fire(gameObject,collision.gameObject);
+
+        }
+        else if (collision.gameObject.tag == blueTowerTag && gameObject.tag == greenWizardTag)//green wizard entre en collision avec blue tower
+        {
+            Debug.Log("test");
+            inCombat = true;
+
+        }
+        else if (collision.gameObject.tag == greenWizardTag && gameObject.tag == blueWizardTag)//blue wizard entre en collision avec green wiz
+        {
+            inCombat = true;
+        }
+        else if (collision.gameObject.tag == greenTowerTag && gameObject.tag == blueWizardTag)//blue wizard entre en collision avec green tower
+        {
+            Debug.Log("test");
+            inCombat = true;
+
+        }
+    }
+
+    
 }

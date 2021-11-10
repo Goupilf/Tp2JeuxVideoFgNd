@@ -10,6 +10,7 @@ TagManager:
   - Blue Side Tower
   - Green Side Tower
   - TowerManager
+  - CombatManager
   layers:
   - Default
   - TransparentFX
