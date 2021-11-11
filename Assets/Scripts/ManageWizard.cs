@@ -8,7 +8,10 @@ public class ManageWizard : MonoBehaviour
     private int lifePoint = STARTING_LIFE;
     private WizardState wizardState;
     public GameObject ignoreObject;
-    public enum WizardStateToSwitch { Flee, Hide, Safety, Fearless };
+    public GameObject towerHide;
+    private float regenClock = 0f; 
+
+    public enum WizardStateToSwitch { Flee, Hide, Safety, Fearless, Normal };
 
     // Start is called before the first frame update
     void Start()
@@ -21,16 +24,16 @@ public class ManageWizard : MonoBehaviour
     {
         if(lifePoint == 0)
         {
-            die();
+            Die();
         }
     }
 
-    public int getLifePoint()
+    public int GetLifePoint()
     {
         return this.lifePoint;
     }
 
-    public void applyDamage(int damage)
+    public void ApplyDamage(int damage)
     {
         this.lifePoint -= damage;
         if (lifePoint < 0)
@@ -39,7 +42,7 @@ public class ManageWizard : MonoBehaviour
         }
     }
 
-    private void die()
+    private void Die()
     {
         this.gameObject.SetActive(false);
         this.lifePoint = STARTING_LIFE;
@@ -57,5 +60,15 @@ public class ManageWizard : MonoBehaviour
                     break;
                 }
         }
+    }
+
+    public void RegenLifePoint(float regenRate)
+    {
+        if (regenClock >= regenRate)
+        {
+            regenClock = 0;
+            lifePoint++;
+        }
+        regenClock += Time.deltaTime;
     }
 }

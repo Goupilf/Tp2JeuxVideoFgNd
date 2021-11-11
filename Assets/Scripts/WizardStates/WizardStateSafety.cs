@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class WizardStateSafety : WizardState
 {
+    private const float MAX_LIFE_POINT = 100;
+    private const float REGEN_THREE_TIME_FASTER = 0.33f;
     public override void Battle()
     {
         
@@ -11,8 +13,10 @@ public class WizardStateSafety : WizardState
 
     public override void ManageStateChange()
     {
-        //if(lifePoint >= 100% || !tower.isActiveInHyerarchie)
-        //changeState(normalState)
+        if(manageWizard.GetLifePoint() >= MAX_LIFE_POINT || !manageWizard.towerHide.activeInHierarchy)
+        {
+            manageWizard.ChangeWizardState(ManageWizard.WizardStateToSwitch.Normal);
+        }
     }
 
     public override void MoveToward()
@@ -29,12 +33,7 @@ public class WizardStateSafety : WizardState
     // Update is called once per frame
     void Update()
     {
-        RegenarateLifePoint();
+        manageWizard.RegenLifePoint(REGEN_THREE_TIME_FASTER);
         ManageStateChange();
-    }
-
-    private void RegenarateLifePoint()
-    {
-        //x3 more fast than normal
     }
 }
