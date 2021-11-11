@@ -2,22 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WizardStateSafety : WizardState
+public class WizardStateNormal : WizardState
 {
     public override void Battle()
     {
-        
+        throw new System.NotImplementedException();
     }
 
     public override void ManageStateChange()
     {
-        //if(lifePoint >= 100% || !tower.isActiveInHyerarchie)
-        //changeState(normalState)
+        
     }
 
     public override void MoveToward()
     {
-        
+        throw new System.NotImplementedException();
     }
 
     // Start is called before the first frame update
@@ -29,12 +28,6 @@ public class WizardStateSafety : WizardState
     // Update is called once per frame
     void Update()
     {
-        RegenarateLifePoint();
-        ManageStateChange();
-    }
-
-    private void RegenarateLifePoint()
-    {
-        //x3 more fast than normal
+        
     }
 }

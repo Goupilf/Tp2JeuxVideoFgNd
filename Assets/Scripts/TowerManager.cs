@@ -46,18 +46,15 @@ public class TowerManager : MonoBehaviour
 
     public GameObject getClosestActiveTower(string wizardTag, Transform position)
     {
-        string towerTag = "";
         GameObject[] list ;
         list = blueTowers; //
 
         if (wizardTag == blueWizardTag)
         {
-            towerTag = blueTowerTag;
             list = blueTowers;
         }
         else if (wizardTag == greenWizardTag)
         {
-            towerTag = greenTowerTag;
             list = greenTowers;
         }
 

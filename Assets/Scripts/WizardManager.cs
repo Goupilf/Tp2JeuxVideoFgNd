@@ -19,14 +19,11 @@ public class WizardManager : MonoBehaviour
     private float spawnTimer = 0;
     private string blueWizardTag = "Blue Wizard";
     private string greenWizardTag = "Green Wizard";
-    private WizardState wizardState;
-    public enum WizardStateToSwitch { Flee, Hide, Safety, Fearless };
 
     // Start is called before the first frame update
     void Start()
     {
         instantiateStartGame();
-        wizardState = GetComponent<WizardState>();
     }
 
     // Update is called once per frame
@@ -122,19 +119,5 @@ public class WizardManager : MonoBehaviour
       {
           blueWizs.Add(blueWizArray[i]);
       }
-    }
-
-    public void ChangeWizardState(WizardStateToSwitch nextState)
-    {
-        Destroy(wizardState);
-
-        switch (nextState)
-        {
-            case WizardStateToSwitch.Flee:
-                {
-                    wizardState = gameObject.AddComponent<WizardStateFlee>() as WizardStateFlee;
-                    break;
-                }
-        }
     }
 }

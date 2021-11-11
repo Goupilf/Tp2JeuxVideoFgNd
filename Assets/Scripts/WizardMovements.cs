@@ -57,7 +57,6 @@ public class WizardMovements : MonoBehaviour
         }
         else if (collision.gameObject.tag == blueTowerTag && gameObject.tag == greenWizardTag)//green wizard entre en collision avec blue tower
         {
-            Debug.Log("test");
             inCombat = true;
 
         }
@@ -67,7 +66,6 @@ public class WizardMovements : MonoBehaviour
         }
         else if (collision.gameObject.tag == greenTowerTag && gameObject.tag == blueWizardTag)//blue wizard entre en collision avec green tower
         {
-            Debug.Log("test");
             inCombat = true;
 
         }

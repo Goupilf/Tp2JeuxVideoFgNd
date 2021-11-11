@@ -21,7 +21,6 @@ public class CombatManager : MonoBehaviour
         blueProjectileList = new List<GameObject>();
         greenProjectileList = new List<GameObject>();
         step = missileSpeed * Time.deltaTime;
-        Debug.Log(step);
         for (int i = 0; i < NB_MAX_PROJECTILE; i++)
         {
             blueProjectileList.Add(instantiateProjectile(blueProjectile));
