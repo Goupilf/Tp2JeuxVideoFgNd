@@ -52,7 +52,7 @@ public class WizardMovements : MonoBehaviour
         if (collision.gameObject.tag == blueWizardTag && gameObject.tag == greenWizardTag)//green wizard entre en collision avec blue wiz
         {
             inCombat = true;
-            //combatManager.Fire(gameObject,collision.gameObject);
+            combatManager.Fire(gameObject,collision.gameObject);
 
         }
         else if (collision.gameObject.tag == blueTowerTag && gameObject.tag == greenWizardTag)//green wizard entre en collision avec blue tower

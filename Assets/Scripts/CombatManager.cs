@@ -60,17 +60,13 @@ public class CombatManager : MonoBehaviour
             {
                 projList[i].SetActive(true);
                 projList[i].transform.position = gameObject.transform.position;
-               // StartCoroutine()
-               // MoveToEnnemy(projList[i].transform.position, collision.transform.position)
-               // break;
+                projList[i].transform.
+                break;
             }
         }
 
 
     }
         
-   // IEnumerator MoveToEnnemy( Vector3 current, Vector3 destination)
-    //{
-   //     Vector3.MoveTowards(current,destination, step); 
-   // }
+   
 }
