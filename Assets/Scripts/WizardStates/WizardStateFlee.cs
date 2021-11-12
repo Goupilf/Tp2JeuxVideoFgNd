@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WizardStateFlee : WizardState
 {
-    protected string allyTowerTag = "";
+    private string allyTowerTag = "";
     private string blueWizardTag = "Blue Wizard";
     private string greenWizardTag = "Green Wizard";
     private string blueTowerTag = "Blue Side Tower";
@@ -43,18 +43,18 @@ public class WizardStateFlee : WizardState
 
     public override void ManageStateChange()
     {
-        wizardManager.ChangeWizardState(WizardManager.WizardStateToSwitch.Hide);
-        wizardManager.ChangeWizardState(WizardManager.WizardStateToSwitch.Safety);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Forest")
+        if(collision.gameObject.tag == "Forest" && collision.gameObject!= manageWizard.ignoreObject)
         {
-            ManageStateChange();
-        } else if(collision.gameObject.tag == allyTowerTag)
+            manageWizard.ignoreObject = collision.gameObject;
+            manageWizard.ChangeWizardState(ManageWizard.WizardStateToSwitch.Hide);
+        } else if(collision.gameObject.tag == allyTowerTag && collision.gameObject != manageWizard.ignoreObject)
         {
-            ManageStateChange();
+            manageWizard.ignoreObject = collision.gameObject;
+            manageWizard.ChangeWizardState(ManageWizard.WizardStateToSwitch.Safety);
         }
     }
 
@@ -65,7 +65,7 @@ public class WizardStateFlee : WizardState
         for (int i = 0; i < gameObjectArray.Length; i++)
         {
             float tempdist = Vector3.Distance(this.transform.position, gameObjectArray[i].transform.position);
-            if (tempdist < dist && gameObjectArray[i].activeInHierarchy && gameObjectArray[i]!=ignoreObject)
+            if (tempdist < dist && gameObjectArray[i].activeInHierarchy && gameObjectArray[i]!= manageWizard.ignoreObject)
             {
                 dist = tempdist;
                 closestObject = gameObjectArray[i];

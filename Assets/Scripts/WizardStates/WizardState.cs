@@ -4,12 +4,10 @@ using UnityEngine;
 
 public abstract class WizardState : MonoBehaviour
 {
-    protected WizardManager wizardManager;
-    protected GameObject ignoreObject;
-
+    protected ManageWizard manageWizard;
     private void Awake()
     {
-        wizardManager = GetComponent<WizardManager>();
+        manageWizard = GetComponent<ManageWizard>();
     }
 
     // Update is called once per frame
