@@ -9,10 +9,10 @@ public class TowerManager : MonoBehaviour
     private const int BLUE = 1;
     private GameObject[] blueTowers;
     private GameObject[] greenTowers;
-    private string blueTowerTag = "Blue Side Tower";
-    private string greenTowerTag = "Green Side Tower";
-    private string blueWizardTag = "Blue Wizard";
-    private string greenWizardTag = "Green Wizard";
+    public string blueTowerTag = "Blue Side Tower";
+    public string greenTowerTag = "Green Side Tower";
+    public string blueWizardTag = "Blue Wizard";
+    public string greenWizardTag = "Green Wizard";
 
     // Start is called before the first frame update
     void Start()
@@ -44,7 +44,7 @@ public class TowerManager : MonoBehaviour
         return new Vector2();
     }
 
-    public GameObject getClosestActiveTower(string wizardTag, Transform position)
+    public GameObject getClosestAlliedActiveTower(string wizardTag, Transform position)
     {
         GameObject[] list ;
         list = blueTowers; //
@@ -73,5 +73,34 @@ public class TowerManager : MonoBehaviour
         }
         return closestTower;
     }
-    
+    public GameObject getClosestEnemyActiveTower(string wizardTag, Transform position)
+    {
+        GameObject[] list;
+        list = blueTowers; //
+
+        if (wizardTag == blueWizardTag)
+        {
+            list = greenTowers;
+        }
+        else if (wizardTag == greenWizardTag)
+        {
+            list = blueTowers;
+        }
+
+        GameObject closestTower = list[1];
+
+        float dist = 9999;
+        for (int i = 0; i < list.Length; i++)
+        {
+            float tempdist = Vector3.Distance(position.position, list[i].transform.position);
+            if (tempdist < dist && list[i].activeSelf)
+            {
+                dist = tempdist;
+                closestTower = list[i];
+            }
+
+        }
+        return closestTower;
+    }
+
 }

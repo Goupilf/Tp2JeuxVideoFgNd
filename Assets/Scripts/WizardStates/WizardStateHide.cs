@@ -31,6 +31,10 @@ public class WizardStateHide : WizardState
     {
         
     }
+    public override void Init()
+    {
+        //Ici ne fait rien, mais pour monter où il faudrait l'appeller si on en avait besoin
+    }
 
     // Update is called once per frame
     void Update()

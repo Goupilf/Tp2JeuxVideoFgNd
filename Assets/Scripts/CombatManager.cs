@@ -59,7 +59,7 @@ public class CombatManager : MonoBehaviour
             {
                 projList[i].SetActive(true);
                 projList[i].transform.position = gameObject.transform.position;
-                projList[i].transform.
+                //projList[i].transform
                 break;
             }
         }

@@ -36,4 +36,8 @@ public class WizardStateSafety : WizardState
         manageWizard.RegenLifePoint(REGEN_THREE_TIME_FASTER);
         ManageStateChange();
     }
+    public override void Init()
+    {
+        //Ici ne fait rien, mais pour monter où il faudrait l'appeller si on en avait besoin
+    }
 }

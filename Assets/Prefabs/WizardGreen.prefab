@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6403821525117263923}
   - component: {fileID: 5028285439935216576}
-  - component: {fileID: -5231609572312679336}
   - component: {fileID: 254752078089835772}
   - component: {fileID: 8809924736197814736}
   - component: {fileID: -7260471295384412230}
+  - component: {fileID: 7720922071275749715}
   m_Layer: 0
   m_Name: WizardGreen
   m_TagString: Green Wizard
@@ -86,19 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-5231609572312679336
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2552958872035428097}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30e3e2a6f4e73b24c887107ac967f491, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tag: 
 --- !u!58 &254752078089835772
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -148,3 +135,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb513b36ac39a7c49a6a0bce4174ef8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ignoreObject: {fileID: 0}
+  towerHide: {fileID: 0}
+--- !u!114 &7720922071275749715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2552958872035428097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3851dc790fa5ece4ea15c3d6616eca5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inCombat: 0

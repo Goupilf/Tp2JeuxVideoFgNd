@@ -40,7 +40,7 @@ public class WizardMovements : MonoBehaviour
 
     private void MoveTowards(string wizardTag)
     {
-        GameObject closestTower = towerManager.getClosestActiveTower(wizardTag, transform);
+        GameObject closestTower = towerManager.getClosestAlliedActiveTower(wizardTag, transform);
         if (inCombat == false)
         {
             transform.position = Vector3.MoveTowards(transform.position, closestTower.transform.position, step);

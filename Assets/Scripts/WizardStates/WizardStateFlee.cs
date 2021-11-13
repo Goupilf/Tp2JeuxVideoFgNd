@@ -85,4 +85,9 @@ public class WizardStateFlee : WizardState
         nearbyGameObject[1] = mostNearbyAllyTower;
         return findTheMostNearbyActif(nearbyGameObject);
     }
+
+    public override void Init()
+    {
+        //Ici ne fait rien, mais pour monter où il faudrait l'appeller si on en avait besoin
+    }
 }
