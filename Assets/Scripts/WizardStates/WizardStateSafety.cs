@@ -8,20 +8,22 @@ public class WizardStateSafety : WizardState
     private const float REGEN_THREE_TIME_FASTER = 0.33f;
     public override void Battle()
     {
-        
+        //Aucun combat lorsqu'en sureté
     }
 
     public override void ManageStateChange()
     {
-        if(manageWizard.GetLifePoint() >= MAX_LIFE_POINT || !manageWizard.towerHide.activeInHierarchy)
+        if(manageWizard.GetLifePoint() >= MAX_LIFE_POINT || !manageWizard.GetTowerHide().activeInHierarchy)
         {
+            manageWizard.SetTowerHide(new GameObject());
+            manageWizard.SetIgnoreObject(new GameObject());
             manageWizard.ChangeWizardState(ManageWizard.WizardStateToSwitch.Normal);
         }
     }
 
     public override void MoveToward()
     {
-        
+        //Aucun déplacement lorsqu'en sureté
     }
 
     // Start is called before the first frame update

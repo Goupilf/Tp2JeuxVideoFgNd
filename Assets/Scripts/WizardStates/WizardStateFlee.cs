@@ -10,6 +10,7 @@ public class WizardStateFlee : WizardState
     private string blueTowerTag = "Blue Side Tower";
     private string greenTowerTag = "Green Side Tower";
     private float speed = 0f;
+    private const float REGEN_NORMALY = 1.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +29,7 @@ public class WizardStateFlee : WizardState
     void Update()
     {
         MoveToward();
+        manageWizard.RegenLifePoint(REGEN_NORMALY);
     }
 
     public override void MoveToward()
@@ -38,24 +40,29 @@ public class WizardStateFlee : WizardState
 
     public override void Battle()
     {
-        
+        //Aucun combat en état de fuite
     }
 
     public override void ManageStateChange()
     {
+        //Changement d'état fait à la collision
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Forest" && collision.gameObject!= manageWizard.ignoreObject)
+        if(collision.gameObject!= manageWizard.GetIgnoreObject())
         {
-            manageWizard.ignoreObject = collision.gameObject;
-            manageWizard.ChangeWizardState(ManageWizard.WizardStateToSwitch.Hide);
-        } else if(collision.gameObject.tag == allyTowerTag && collision.gameObject != manageWizard.ignoreObject)
-        {
-            manageWizard.ignoreObject = collision.gameObject;
-            manageWizard.ChangeWizardState(ManageWizard.WizardStateToSwitch.Safety);
+            if(collision.gameObject.tag == "Forest")
+            {
+                manageWizard.SetIgnoreObject(collision.gameObject);
+                manageWizard.ChangeWizardState(ManageWizard.WizardStateToSwitch.Hide);
+            } else if(collision.gameObject.tag == allyTowerTag)
+            {
+                manageWizard.SetIgnoreObject(collision.gameObject);
+                manageWizard.ChangeWizardState(ManageWizard.WizardStateToSwitch.Safety);
+            }
         }
+        
     }
 
     private GameObject findTheMostNearbyActif(GameObject[] gameObjectArray)

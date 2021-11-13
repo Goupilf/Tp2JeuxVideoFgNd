@@ -9,8 +9,8 @@ public class ManageWizard : MonoBehaviour
     private string greenWizardTag = "Green Wizard";
     private int lifePoint = STARTING_LIFE;
     private WizardState wizardState;
-    public GameObject ignoreObject;
-    public GameObject towerHide;
+    private GameObject ignoreObject;
+    private GameObject towerHide;
     
     private float regenClock = 0f; 
 
@@ -75,6 +75,27 @@ public class ManageWizard : MonoBehaviour
         }
         regenClock += Time.deltaTime;
     }
+
+    public GameObject GetTowerHide()
+    {
+        return towerHide;
+    }
+
+    public void SetTowerHide(GameObject tower)
+    {
+        towerHide = tower;
+    }
+
+    public GameObject GetIgnoreObject()
+    {
+        return ignoreObject;
+    }
+
+    public void SetIgnoreObject(GameObject ignoreObject) {
+        this.ignoreObject = ignoreObject;
+    }
+
+
     //wizardState.towerManager.blueTowerTag ne devrait pas exister. Si tu veux avoir accès au tag, place-le en contante dans ce même fichier
     //Cette vérification de en combat ou non devrait être défini dans le state: lorsque je suis en état Sureté, je ne peux pas être en combat
    private void OnTriggerEnter2D(Collider2D collision) 

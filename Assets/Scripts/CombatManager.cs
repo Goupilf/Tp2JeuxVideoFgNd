@@ -63,9 +63,5 @@ public class CombatManager : MonoBehaviour //Toute cette classe devrait se trouv
                 break;
             }
         }
-
-
     }
-        
-   
 }

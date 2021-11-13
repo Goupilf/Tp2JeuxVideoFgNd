@@ -4,17 +4,22 @@ using UnityEngine;
 
 public class WizardStateNormal : WizardState
 {
-
+    private const int LIFE_POINT_TO_FLEE = 25;
     private float moveSpeed = 1f;
-
+    private const float REGEN_NORMALY = 1.0f;
     public override void Battle()
     {
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
     }
 
     public override void ManageStateChange()
     {
-
+        if(manageWizard.GetLifePoint() <= LIFE_POINT_TO_FLEE)
+        {
+            manageWizard.ChangeWizardState(ManageWizard.WizardStateToSwitch.Flee);
+        }
+        //if(killNumber >= 5)
+        //changeState -> Fearless
     }
 
     public override void MoveToward()
@@ -44,6 +49,6 @@ public class WizardStateNormal : WizardState
         {
             MoveToward();
         }
-        
+        manageWizard.RegenLifePoint(REGEN_NORMALY);
     }
 }
