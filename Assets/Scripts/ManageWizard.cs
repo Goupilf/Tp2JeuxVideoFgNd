@@ -7,14 +7,18 @@ public class ManageWizard : MonoBehaviour
     private const int STARTING_LIFE = 100;
     private string blueWizardTag = "Blue Wizard";
     private string greenWizardTag = "Green Wizard";
-    private int lifePoint = STARTING_LIFE;
+    [SerializeField] private int lifePoint = STARTING_LIFE;
     private WizardState wizardState;
     public GameObject ignoreObject;
     private GameObject towerHide;
-    
-    private float regenClock = 0f; 
+    public string blueTowerTag = "Blue Side Tower";
+    public string greenTowerTag = "Green Side Tower";
+    public int damage = 1;
+    private float regenClock = 0f;
+    [SerializeField] private ManageWizard ennemieTargeted;
+    [SerializeField] private ManageTower ennemieTargetedTower;
 
-    public enum WizardStateToSwitch { Flee, Hide, Safety, Fearless, Normal, Disable };
+    public enum WizardStateToSwitch { Flee, Hide, Safety, Fearless, Normal , Disable};
 
     // Start is called before the first frame update
     void Start()
@@ -44,6 +48,24 @@ public class ManageWizard : MonoBehaviour
         {
             lifePoint = 0;
         }
+    }
+    public void AttackEnnemiTargeted(int damage)
+    {
+
+        if (ennemieTargeted != null)
+        {
+            ennemieTargeted.lifePoint -= damage;
+            if (lifePoint < 0)
+            {
+                lifePoint = 0;
+            }
+        }
+        else if (ennemieTargetedTower != null)
+        {
+            ennemieTargetedTower.ApplyDamage(damage);
+        }
+        
+
     }
 
     private void Die()
@@ -104,24 +126,46 @@ public class ManageWizard : MonoBehaviour
         if (collision.gameObject.tag == blueWizardTag && gameObject.tag == greenWizardTag)//green wizard entre en collision avec blue wiz
         {
             wizardState.inCombat = true;
-            wizardState.combatManager.Fire(gameObject, collision.gameObject);
+            if (ennemieTargeted == null)
+            {
+                ennemieTargeted = collision.gameObject.GetComponent<ManageWizard>();
+            }
 
         }
         
-        else if (collision.gameObject.tag == wizardState.towerManager.blueTowerTag && gameObject.tag == greenWizardTag)//green wizard entre en collision avec blue tower
+        else if (collision.gameObject.tag == blueTowerTag && gameObject.tag == greenWizardTag)//green wizard entre en collision avec blue tower
         {
             wizardState.inCombat = true;
+            if (ennemieTargeted == null)
+            {
+                ennemieTargetedTower = collision.gameObject.GetComponent<ManageTower>();
+            }
 
         }
         else if (collision.gameObject.tag == greenWizardTag && gameObject.tag == blueWizardTag)//blue wizard entre en collision avec green wiz
         {
             wizardState.inCombat = true;
+            if (ennemieTargeted == null)
+            {
+                ennemieTargeted = collision.gameObject.GetComponent<ManageWizard>();
+            }
         }
-        else if (collision.gameObject.tag == wizardState.towerManager.greenTowerTag && gameObject.tag == blueWizardTag)//blue wizard entre en collision avec green tower
+        else if (collision.gameObject.tag == greenTowerTag && gameObject.tag == blueWizardTag)//blue wizard entre en collision avec green tower
         {
             wizardState.inCombat = true;
+            if (ennemieTargeted == null)
+            {
+                ennemieTargetedTower = collision.gameObject.GetComponent<ManageTower>();
+            }
 
         }
     }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.GetComponent<ManageWizard>() == ennemieTargeted) {
+            ennemieTargeted = null;
+            wizardState.inCombat = false;
+        }
+    }
 }

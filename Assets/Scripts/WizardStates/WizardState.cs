@@ -6,14 +6,12 @@ public abstract class WizardState : MonoBehaviour
 {
     protected ManageWizard manageWizard;
     public TowerManager towerManager;
-    public CombatManager combatManager;
     public bool inCombat = false;
 
     private void Awake()
     {
 
         towerManager = GameObject.FindGameObjectWithTag("TowerManager").GetComponent<TowerManager>();
-        combatManager = GameObject.FindGameObjectWithTag("CombatManager").GetComponent<CombatManager>();
         manageWizard = GetComponent<ManageWizard>();
     }
 

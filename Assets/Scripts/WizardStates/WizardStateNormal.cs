@@ -7,8 +7,10 @@ public class WizardStateNormal : WizardState
     private const int LIFE_POINT_TO_FLEE = 25;
     private float moveSpeed = 1f;
     private const float REGEN_NORMALY = 1.0f;
+    
     public override void Battle()
     {
+        manageWizard.AttackEnnemiTargeted(manageWizard.damage);
         //throw new System.NotImplementedException();
     }
 
@@ -48,6 +50,10 @@ public class WizardStateNormal : WizardState
         if (!inCombat)
         {
             MoveToward();
+        }
+        else if (inCombat)
+        {
+            Battle();
         }
         manageWizard.RegenLifePoint(REGEN_NORMALY);
     }
