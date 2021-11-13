@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CombatManager : MonoBehaviour
+public class CombatManager : MonoBehaviour //Toute cette classe devrait se trouver dans le manageWizard selon moi.
 {
     [SerializeField] GameObject blueProjectile;
     [SerializeField] GameObject greenProjectile;
@@ -41,9 +41,9 @@ public class CombatManager : MonoBehaviour
         proj.SetActive(false);
         return proj;
     }
-    public void Fire(GameObject gameObject, GameObject collision)
+    public void Fire(GameObject gameObject, GameObject collision)//ici t'as un paramètre jamais utiliser. À effacé si non nécessaire
     {
-        List<GameObject> projList = blueProjectileList;
+        List<GameObject> projList = blueProjectileList; //L'utilisation d'un tableau de projectile inutile. Tu veux seulement faire x nombre de dégâts à l'adversaire.
         if (gameObject.tag == blueWizardTag)
         {
             projList = blueProjectileList;

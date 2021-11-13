@@ -86,7 +86,7 @@ public class WizardStateFlee : WizardState
         return findTheMostNearbyActif(nearbyGameObject);
     }
 
-    public override void Init()
+    public override void Init() // Le contenu de init peux être mis dans une fonction start. méthode inutile à mon avis.
     {
         //Ici ne fait rien, mais pour monter où il faudrait l'appeller si on en avait besoin
     }

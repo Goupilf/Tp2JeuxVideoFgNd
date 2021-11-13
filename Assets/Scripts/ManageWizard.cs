@@ -75,9 +75,11 @@ public class ManageWizard : MonoBehaviour
         }
         regenClock += Time.deltaTime;
     }
-   private void OnTriggerEnter2D(Collider2D collision)
+    //wizardState.towerManager.blueTowerTag ne devrait pas exister. Si tu veux avoir accès au tag, place-le en contante dans ce même fichier
+    //Cette vérification de en combat ou non devrait être défini dans le state: lorsque je suis en état Sureté, je ne peux pas être en combat
+   private void OnTriggerEnter2D(Collider2D collision) 
     {
-        print(wizardState.towerManager.blueTowerTag);
+        //print(wizardState.towerManager.blueTowerTag);
         if (collision.gameObject.tag == blueWizardTag && gameObject.tag == greenWizardTag)//green wizard entre en collision avec blue wiz
         {
             wizardState.inCombat = true;

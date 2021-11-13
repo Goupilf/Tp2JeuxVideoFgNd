@@ -5,8 +5,8 @@ using UnityEngine;
 public class WizardStateHide : WizardState
 {
     private bool inCombat = false;
-    private const float regenNormaly = 1.0f;
-    private const float regenTwiceMoreFast = 0.5f;
+    private const float REGEN_NORMALY = 1.0f;
+    private const float REGEN_TWICE_MORE_FAST = 0.5f;
     public override void Battle()
     {
         //Si ennemi en vue, va l'attaquer.
@@ -42,11 +42,11 @@ public class WizardStateHide : WizardState
         if (inCombat)
         {
             Battle();
-            manageWizard.RegenLifePoint(regenNormaly);
+            manageWizard.RegenLifePoint(REGEN_NORMALY);
         }
         else
         {
-            manageWizard.RegenLifePoint(regenTwiceMoreFast);
+            manageWizard.RegenLifePoint(REGEN_TWICE_MORE_FAST);
         }
         ManageStateChange();
     }

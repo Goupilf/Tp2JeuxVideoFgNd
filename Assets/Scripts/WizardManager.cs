@@ -34,19 +34,18 @@ public class WizardManager : MonoBehaviour
         {
             spawnTimer = 0;
             initializeWizLists();
-            if (blueWizs.Count < MAX_NB_WIZARD_EACH_SIDE)
+            manageWizardSpawn(BLUE, blueWizs, blueWizard);
+            manageWizardSpawn(GREEN, greenWizs, greenWizard);
+        }
+    }
+
+    private void manageWizardSpawn(int color, List<GameObject> wizList, GameObject prefab)
+    {
+        if (wizList.Count < MAX_NB_WIZARD_EACH_SIDE)
+        {
+            if (!setInactiveWizardFromList(wizList, color))
             {
-                if(!setInactiveWizardFromList(blueWizs, BLUE))
-                {
-                    instantiateWizard(BLUE, towerManager.getRandomActifTowerPosition(BLUE), blueWizard);
-                }
-            }
-            if (greenWizs.Count < MAX_NB_WIZARD_EACH_SIDE)
-            {
-                if (!setInactiveWizardFromList(greenWizs, GREEN))
-                {
-                    instantiateWizard(GREEN, towerManager.getRandomActifTowerPosition(GREEN), greenWizard);
-                }
+                instantiateWizard(color, towerManager.getRandomActifTowerPosition(color), prefab);
             }
         }
     }
