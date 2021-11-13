@@ -9,7 +9,7 @@ public class ManageWizard : MonoBehaviour
     private string greenWizardTag = "Green Wizard";
     private int lifePoint = STARTING_LIFE;
     private WizardState wizardState;
-    private GameObject ignoreObject;
+    public GameObject ignoreObject;
     private GameObject towerHide;
     
     private float regenClock = 0f; 
