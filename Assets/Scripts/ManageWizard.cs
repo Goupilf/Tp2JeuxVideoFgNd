@@ -14,7 +14,7 @@ public class ManageWizard : MonoBehaviour
     
     private float regenClock = 0f; 
 
-    public enum WizardStateToSwitch { Flee, Hide, Safety, Fearless, Normal };
+    public enum WizardStateToSwitch { Flee, Hide, Safety, Fearless, Normal, Disable };
 
     // Start is called before the first frame update
     void Start()
