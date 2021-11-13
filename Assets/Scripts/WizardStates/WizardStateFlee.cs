@@ -72,7 +72,7 @@ public class WizardStateFlee : WizardState
         for (int i = 0; i < gameObjectArray.Length; i++)
         {
             float tempdist = Vector3.Distance(this.transform.position, gameObjectArray[i].transform.position);
-            if (tempdist < dist && gameObjectArray[i].activeInHierarchy && gameObjectArray[i]!= manageWizard.ignoreObject)
+            if (tempdist < dist && gameObjectArray[i].activeInHierarchy && gameObjectArray[i]!= manageWizard.GetIgnoreObject())
             {
                 dist = tempdist;
                 closestObject = gameObjectArray[i];

@@ -13,13 +13,14 @@ public class TowerManager : MonoBehaviour
     public string greenTowerTag = "Green Side Tower";
     public string blueWizardTag = "Blue Wizard";
     public string greenWizardTag = "Green Wizard";
+    private GameObject gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
         blueTowers = GameObject.FindGameObjectsWithTag(blueTowerTag);
         greenTowers = GameObject.FindGameObjectsWithTag(greenTowerTag);
-        
+        gameManager = GameObject.Find("GameManager");
     }
 
     // Update is called once per frame
@@ -103,4 +104,28 @@ public class TowerManager : MonoBehaviour
         return closestTower;
     }
 
+    private void manageWin()
+    {
+        if (verifyWinner(blueTowers)) //Green win?
+        {
+            gameManager.GetComponent<GameManager>().setWinnerText(GREEN);
+            //Call disable wizard state here
+        } else if (verifyWinner(greenTowers)) //Blue win?
+        {
+            gameManager.GetComponent<GameManager>().setWinnerText(BLUE);
+            //Call disable wizard state here
+        }
+    }
+
+    private bool verifyWinner(GameObject[] towerArray)
+    {
+        for (int i = 0; i < towerArray.Length; i++)
+        {
+            if (towerArray[i].activeInHierarchy)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
 }

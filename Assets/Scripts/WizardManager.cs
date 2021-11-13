@@ -19,6 +19,7 @@ public class WizardManager : MonoBehaviour
     private float spawnTimer = 0;
     private string blueWizardTag = "Blue Wizard";
     private string greenWizardTag = "Green Wizard";
+    private bool isGameFinish = false;
 
     // Start is called before the first frame update
     void Start()
@@ -29,11 +30,11 @@ public class WizardManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        initializeWizLists();
         spawnTimer += Time.deltaTime;
-        if(spawnTimer > TIME_FOR_SPAWN)
+        if(spawnTimer > TIME_FOR_SPAWN && !isGameFinish)
         {
             spawnTimer = 0;
-            initializeWizLists();
             manageWizardSpawn(BLUE, blueWizs, blueWizard);
             manageWizardSpawn(GREEN, greenWizs, greenWizard);
         }
@@ -118,5 +119,40 @@ public class WizardManager : MonoBehaviour
       {
           blueWizs.Add(blueWizArray[i]);
       }
+    }
+
+    public int GetNbActifWizard(int color)
+    {
+        List<GameObject> wizList;
+        if(color == BLUE)
+        {
+            wizList = blueWizs;
+        } else
+        {
+            wizList = greenWizs;
+        }
+        int nbActif = 0;
+        for(int i = 0; i < wizList.Count; i++)
+        {
+            if (wizList[i].activeInHierarchy)
+            {
+                nbActif++;
+            }
+        }
+        return nbActif;
+
+    }
+
+    public void SetEveryWizardsToDisableState()
+    {
+        for(int i = 0; i < blueWizs.Count; i++)
+        {
+            blueWizs[i].GetComponent<ManageWizard>().ChangeWizardState(ManageWizard.WizardStateToSwitch.Disable);
+        }
+        for (int i = 0; i < greenWizs.Count; i++)
+        {
+            greenWizs[i].GetComponent<ManageWizard>().ChangeWizardState(ManageWizard.WizardStateToSwitch.Disable);
+        }
+        isGameFinish = true;
     }
 }
