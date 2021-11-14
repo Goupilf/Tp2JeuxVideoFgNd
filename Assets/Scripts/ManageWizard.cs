@@ -20,6 +20,7 @@ public class ManageWizard : MonoBehaviour
     [SerializeField] private ManageWizard ennemieTargeted;
     [SerializeField] private ManageTower ennemieTargetedTower;
     public int killCount = 0;
+    public bool isFearless = false;
 
     public enum WizardStateToSwitch { Flee, Hide, Safety, Fearless, Normal , Disable};
 
@@ -98,6 +99,7 @@ public class ManageWizard : MonoBehaviour
                 }
             case WizardStateToSwitch.Fearless:
                 {
+                    isFearless = true;
                     wizardState = gameObject.AddComponent<WizardStateFearless>() as WizardStateFearless;
                     break;
                 }
@@ -152,43 +154,83 @@ public class ManageWizard : MonoBehaviour
     //Cette vérification de en combat ou non devrait être défini dans le state: lorsque je suis en état Sureté, je ne peux pas être en combat
    private void OnTriggerEnter2D(Collider2D collision) 
     {
-        //print(wizardState.towerManager.blueTowerTag);
-        if (collision.gameObject.tag == blueWizardTag && gameObject.tag == greenWizardTag)//green wizard entre en collision avec blue wiz
+
+        if (collision.gameObject.tag == blueWizardTag && gameObject.tag == greenWizardTag )//green wizard entre en collision avec blue wiz
         {
-            wizardState.inCombat = true;
-            if (ennemieTargeted == null)
+            if (isFearless)
             {
-                ennemieTargeted = collision.gameObject.GetComponent<ManageWizard>();
+                //Debug.Log(collision.gameObject.GetComponent<ManageWizard>().ennemieTargeted.gameObject);
+                //Debug.Log(this.gameObject);
+                if (collision.gameObject.GetComponent<ManageWizard>().ennemieTargeted == this) //si il est fearless et cibler par ennemi
+                {
+                    setInCombatTrue();
+                    SetTargetedEnnemy(collision);
+                }
+
+                //si pas cibler par ennemi entre pas en cbt avec
             }
+            else
+            {
+
+                setInCombatTrue();
+                SetTargetedEnnemy(collision);
+            }
+            
 
         }
-        
+
         else if (collision.gameObject.tag == BLUE_TOWER_TAG && gameObject.tag == greenWizardTag)//green wizard entre en collision avec blue tower
         {
-            wizardState.inCombat = true;
-            if (ennemieTargeted == null)
-            {
-                ennemieTargetedTower = collision.gameObject.GetComponent<ManageTower>();
-            }
+            setInCombatTrue();
+            SetTargetedTower(collision);
 
         }
         else if (collision.gameObject.tag == greenWizardTag && gameObject.tag == blueWizardTag)//blue wizard entre en collision avec green wiz
         {
-            wizardState.inCombat = true;
-            if (ennemieTargeted == null)
+            if (isFearless)
             {
-                ennemieTargeted = collision.gameObject.GetComponent<ManageWizard>();
+                if (collision.gameObject.GetComponent<ManageWizard>().ennemieTargeted == this) //si il est fearless et cibler par ennemi
+                {
+                    setInCombatTrue();
+                    SetTargetedEnnemy(collision);
+                }
+
+                //si pas cibler par ennemi entre pas en cbt avec
+            }
+            else
+            {
+
+                setInCombatTrue();
+                SetTargetedEnnemy(collision);
             }
         }
         else if (collision.gameObject.tag == GREEN_TOWER_TAG && gameObject.tag == blueWizardTag)//blue wizard entre en collision avec green tower
         {
-            wizardState.inCombat = true;
-            if (ennemieTargeted == null)
-            {
-                ennemieTargetedTower = collision.gameObject.GetComponent<ManageTower>();
-            }
+            setInCombatTrue();
+            SetTargetedTower(collision);
 
         }
+    }
+
+    private void SetTargetedTower(Collider2D collision)
+    {
+        if (ennemieTargeted == null)
+        {
+            ennemieTargetedTower = collision.gameObject.GetComponent<ManageTower>();
+        }
+    }
+
+    private void SetTargetedEnnemy(Collider2D collision)
+    {
+        if (ennemieTargeted == null)
+        {
+            ennemieTargeted = collision.gameObject.GetComponent<ManageWizard>();
+        }
+    }
+
+    private void setInCombatTrue()
+    {
+        wizardState.inCombat = true;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -200,9 +242,10 @@ public class ManageWizard : MonoBehaviour
         }
     }
     private void OnTriggerStay2D(Collider2D collision) {
+
         if (ennemieTargeted == null )
         {
-            if (collision.gameObject.tag == blueWizardTag && gameObject.tag != blueWizardTag || collision.gameObject.tag == greenWizardTag && gameObject.tag != greenWizardTag)
+            if (collision.gameObject.tag == blueWizardTag && gameObject.tag != blueWizardTag && collision.gameObject.GetComponent<WizardStateSafety>() == null || collision.gameObject.tag == greenWizardTag && gameObject.tag != greenWizardTag && collision.gameObject.GetComponent<WizardStateSafety>() == null)
             {
                 ennemieTargeted = collision.gameObject.GetComponent<ManageWizard>();
                 wizardState.inCombat = true;
