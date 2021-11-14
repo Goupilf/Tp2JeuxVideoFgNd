@@ -60,8 +60,6 @@ public class ManageWizard : MonoBehaviour
         {
             ennemieTargetedTower.ApplyDamage(damage);
         }
-        
-
     }
 
     private void Die()
@@ -81,6 +79,21 @@ public class ManageWizard : MonoBehaviour
                     wizardState = gameObject.AddComponent<WizardStateFlee>() as WizardStateFlee;
                     break;
                 }
+            case WizardStateToSwitch.Hide:
+                {
+                    wizardState = gameObject.AddComponent<WizardStateHide>() as WizardStateHide;
+                    break;
+                }
+            case WizardStateToSwitch.Safety:
+                {
+                    wizardState = gameObject.AddComponent<WizardStateSafety>() as WizardStateSafety;
+                    break;
+                }
+            case WizardStateToSwitch.Disable:
+                {
+                    wizardState = null;
+                    break;
+                }
         }
     }
 
@@ -90,6 +103,10 @@ public class ManageWizard : MonoBehaviour
         {
             regenClock = 0;
             lifePoint++;
+            if(lifePoint > STARTING_LIFE)
+            {
+                lifePoint = STARTING_LIFE;
+            }
         }
         regenClock += Time.deltaTime;
     }

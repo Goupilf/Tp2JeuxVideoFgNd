@@ -26,7 +26,7 @@ public class TowerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+        manageWin();
     }
 
     public Vector2 getRandomActifTowerPosition(int color)
@@ -109,11 +109,11 @@ public class TowerManager : MonoBehaviour
         if (verifyWinner(blueTowers)) //Green win?
         {
             gameManager.GetComponent<GameManager>().setWinnerText(GREEN);
-            //Call disable wizard state here
+            GameObject.Find("WizardManager").GetComponent<WizardManager>().SetEveryWizardsToDisableState();
         } else if (verifyWinner(greenTowers)) //Blue win?
         {
             gameManager.GetComponent<GameManager>().setWinnerText(BLUE);
-            //Call disable wizard state here
+            GameObject.Find("WizardManager").GetComponent<WizardManager>().SetEveryWizardsToDisableState();
         }
     }
 
