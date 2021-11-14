@@ -4,21 +4,20 @@ using UnityEngine;
 
 public class WizardManager : MonoBehaviour
 {
-    [SerializeField] GameObject blueWizard;
-    [SerializeField] GameObject greenWizard;
-    [SerializeField] BoxCollider2D blueZone;
-    [SerializeField] BoxCollider2D greenZone;
+    [SerializeField] private GameObject blueWizard;
+    [SerializeField] private GameObject greenWizard;
+    [SerializeField] private BoxCollider2D blueZone;
+    [SerializeField] private BoxCollider2D greenZone;
     [SerializeField] private TowerManager towerManager;
-    public int MAX_NB_WIZARD_EACH_SIDE = 5;
-    public float TIME_FOR_SPAWN = 5;
-    public const float WIZARD_SPAWN_RATE = 5.0f;
+    [SerializeField] private int nbMaxWizardEachSide = 5;
+    [SerializeField] private float timeForSpawn = 5;
     private const int GREEN = 0;
     private const int BLUE = 1;
     private List<GameObject> greenWizs = new List<GameObject>();
     private List<GameObject> blueWizs = new List<GameObject>();
     private float spawnTimer = 0;
-    private string blueWizardTag = "Blue Wizard";
-    private string greenWizardTag = "Green Wizard";
+    public const string BLUE_WIZARD_TAG = "Blue Wizard";
+    public const string GREEN_WIZARD_TAG = "Green Wizard";
     private bool isGameFinish = false;
 
     // Start is called before the first frame update
@@ -32,7 +31,7 @@ public class WizardManager : MonoBehaviour
     {
         initializeWizLists();
         spawnTimer += Time.deltaTime;
-        if(spawnTimer > TIME_FOR_SPAWN && !isGameFinish)
+        if(spawnTimer > timeForSpawn && !isGameFinish)
         {
             spawnTimer = 0;
             manageWizardSpawn(BLUE, blueWizs, blueWizard);
@@ -42,7 +41,7 @@ public class WizardManager : MonoBehaviour
 
     private void manageWizardSpawn(int color, List<GameObject> wizList, GameObject prefab)
     {
-        if (wizList.Count < MAX_NB_WIZARD_EACH_SIDE)
+        if (wizList.Count < nbMaxWizardEachSide)
         {
             if (!setInactiveWizardFromList(wizList, color))
             {
@@ -107,8 +106,8 @@ public class WizardManager : MonoBehaviour
 
     private void initializeWizLists()
     {
-      GameObject[] greenWizArray = GameObject.FindGameObjectsWithTag(greenWizardTag);
-      GameObject[] blueWizArray = GameObject.FindGameObjectsWithTag(blueWizardTag);
+      GameObject[] greenWizArray = GameObject.FindGameObjectsWithTag(GREEN_WIZARD_TAG);
+      GameObject[] blueWizArray = GameObject.FindGameObjectsWithTag(BLUE_WIZARD_TAG);
       greenWizs.Clear();
       blueWizs.Clear();
       for (int i = 0; i < greenWizArray.Length; i++)

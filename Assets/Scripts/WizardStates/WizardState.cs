@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class WizardState : MonoBehaviour
 {
     protected ManageWizard manageWizard;
-    public TowerManager towerManager;
+    protected TowerManager towerManager;
     public bool inCombat = false;
 
     private void Awake()
