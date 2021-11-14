@@ -52,9 +52,9 @@ public class ManageWizard : MonoBehaviour
             lifePoint = 0;
         }
     }
-    public void AttackEnnemiTargeted(int damage)
+    public void AttackEnnemiTargeted()
     {
-
+        randomizeDamage();
         if (ennemieTargeted != null)
         {
             ennemieTargeted.ApplyDamage(damage);
@@ -94,6 +94,11 @@ public class ManageWizard : MonoBehaviour
             case WizardStateToSwitch.Safety:
                 {
                     wizardState = gameObject.AddComponent<WizardStateSafety>() as WizardStateSafety;
+                    break;
+                }
+            case WizardStateToSwitch.Fearless:
+                {
+                    wizardState = gameObject.AddComponent<WizardStateFearless>() as WizardStateFearless;
                     break;
                 }
             case WizardStateToSwitch.Disable:

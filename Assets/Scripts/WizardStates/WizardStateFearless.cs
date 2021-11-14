@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WizardStated : WizardState
+public class WizardStateFearless : WizardState
 {
     private const float REGEN_NORMALY = 1.0f;
     private const int LIFE_POINT_TO_FLEE = 25;
@@ -13,9 +13,9 @@ public class WizardStated : WizardState
     {
         if (battleClock >= timeBetweenAttacks)
         {
-            manageWizard.randomizeDamage();
+            
             battleClock = 0;
-            manageWizard.AttackEnnemiTargeted(manageWizard.damage);
+            manageWizard.AttackEnnemiTargeted();
 
         }
         battleClock += Time.deltaTime;
