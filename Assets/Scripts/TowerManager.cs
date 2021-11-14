@@ -9,8 +9,8 @@ public class TowerManager : MonoBehaviour
     private const int BLUE = 1;
     private GameObject[] blueTowers;
     private GameObject[] greenTowers;
-    public const string BLUE_TOWER_TAG = "Blue Side Tower";
-    public const string GREEN_TOWER_TAG = "Green Side Tower";
+    private const string BLUE_TOWER_TAG = "Blue Side Tower";
+    private const string GREEN_TOWER_TAG = "Green Side Tower";
     public const string BLUE_WIZARD_TAG = "Blue Wizard";
     public const string GREEN_WIZARD_TAG = "Green Wizard";
     private GameObject gameManager;
