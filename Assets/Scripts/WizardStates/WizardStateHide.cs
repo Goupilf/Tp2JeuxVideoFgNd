@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class WizardStateHide : WizardState
 {
-    private bool inCombat = false;
     private const float REGEN_NORMALY = 1.0f;
     private const float REGEN_TWICE_MORE_FAST = 0.5f;
     public override void Battle()
     {
-        //Si ennemi en vue, va l'attaquer.
+        manageWizard.AttackEnnemiTargeted(manageWizard.damage);
     }
 
     public override void ManageStateChange()
