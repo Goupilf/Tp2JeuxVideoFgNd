@@ -12,6 +12,8 @@ public class WizardStateFlee : WizardState
     private float speed = 0f;
     private const float REGEN_NORMALY = 1.0f;
     private Vector2 closestObjectPosition;
+    private ManageWizard.WizardStateToSwitch nextState;
+    private GameObject towerToHide;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,8 +51,16 @@ public class WizardStateFlee : WizardState
     {
         if(this.gameObject.transform.position == new Vector3(closestObjectPosition.x,closestObjectPosition.y, 0))
         {
+            if(nextState == ManageWizard.WizardStateToSwitch.Hide)
+            {
+                manageWizard.ChangeWizardState(ManageWizard.WizardStateToSwitch.Hide);
+            } else if(nextState == ManageWizard.WizardStateToSwitch.Safety)
+            {
+                manageWizard.ChangeWizardState(ManageWizard.WizardStateToSwitch.Safety);
+                manageWizard.SetTowerHide(towerToHide);
+            }
             manageWizard.SetIgnoreObjectPosition(closestObjectPosition);
-            manageWizard.ChangeWizardState(ManageWizard.WizardStateToSwitch.Hide);
+            
         }
     }
 
@@ -66,6 +76,7 @@ public class WizardStateFlee : WizardState
             {
                 dist = tempdist;
                 nearestPosition = gameObjectArray[i].transform.position;
+                towerToHide = gameObjectArray[i];
             }
         }
         return nearestPosition;
@@ -81,10 +92,12 @@ public class WizardStateFlee : WizardState
 
         if(Vector2.Distance(this.transform.position, mostNearbyTree) > Vector2.Distance(this.transform.position, mostNearbyAllyTower))
         {
+            nextState = ManageWizard.WizardStateToSwitch.Safety;
             return mostNearbyAllyTower;
         }
         else
         {
+            nextState = ManageWizard.WizardStateToSwitch.Hide;
             return mostNearbyTree;
         }
         
