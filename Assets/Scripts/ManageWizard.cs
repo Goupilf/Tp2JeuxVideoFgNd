@@ -9,7 +9,7 @@ public class ManageWizard : MonoBehaviour
     private string greenWizardTag = "Green Wizard";
     [SerializeField] private int lifePoint = STARTING_LIFE;
     private WizardState wizardState;
-    public GameObject ignoreObject;
+    public Vector2 ignoreObjectPosition;
     private GameObject towerHide;
     public string blueTowerTag = "Blue Side Tower";
     public string greenTowerTag = "Green Side Tower";
@@ -122,13 +122,13 @@ public class ManageWizard : MonoBehaviour
         towerHide = tower;
     }
 
-    public GameObject GetIgnoreObject()
+    public Vector2 GetIgnoreObject()
     {
-        return ignoreObject;
+        return ignoreObjectPosition;
     }
 
-    public void SetIgnoreObject(GameObject ignoreObject) {
-        this.ignoreObject = ignoreObject;
+    public void SetIgnoreObjectPosition(Vector2 ignoreObject) {
+        this.ignoreObjectPosition = ignoreObject;
     }
 
 
