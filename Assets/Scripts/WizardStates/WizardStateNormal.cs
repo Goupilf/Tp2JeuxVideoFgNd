@@ -7,10 +7,20 @@ public class WizardStateNormal : WizardState
     private const int LIFE_POINT_TO_FLEE = 25;
     private float moveSpeed = 1f;
     private const float REGEN_NORMALY = 1.0f;
+    private float battleClock = 0f;
+    private float timeBetweenAttacks = 2f;
+
     
     public override void Battle()
     {
-        manageWizard.AttackEnnemiTargeted(manageWizard.damage);
+        if (battleClock >= timeBetweenAttacks)
+        {
+            battleClock = 0;
+            manageWizard.AttackEnnemiTargeted(manageWizard.damage);
+            
+        }
+        battleClock += Time.deltaTime;
+        
         //throw new System.NotImplementedException();
     }
 
@@ -56,5 +66,6 @@ public class WizardStateNormal : WizardState
             Battle();
         }
         manageWizard.RegenLifePoint(REGEN_NORMALY);
+        ManageStateChange(); 
     }
 }

@@ -13,7 +13,7 @@ public class ManageWizard : MonoBehaviour
     private GameObject towerHide;
     public string blueTowerTag = "Blue Side Tower";
     public string greenTowerTag = "Green Side Tower";
-    public int damage = 1;
+    public int damage = 20;
     private float regenClock = 0f;
     [SerializeField] private ManageWizard ennemieTargeted;
     [SerializeField] private ManageTower ennemieTargetedTower;
@@ -29,6 +29,7 @@ public class ManageWizard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(damage);
         if(lifePoint == 0)
         {
             Die();
@@ -178,7 +179,28 @@ public class ManageWizard : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<ManageWizard>() == ennemieTargeted) {
             ennemieTargeted = null;
+            ennemieTargetedTower = null;
             wizardState.inCombat = false;
+        }
+    }
+    private void OnTriggerStay2D(Collider2D collision) {
+        if (ennemieTargeted == null )
+        {
+            if (collision.gameObject.tag == blueWizardTag && gameObject.tag != blueWizardTag || collision.gameObject.tag == greenWizardTag && gameObject.tag != greenWizardTag)
+            {
+                ennemieTargeted = collision.gameObject.GetComponent<ManageWizard>();
+                wizardState.inCombat = true;
+            }
+            
+        }
+        if (ennemieTargetedTower == null)
+        {
+            if (collision.gameObject.tag == blueTowerTag && gameObject.tag != blueWizardTag || collision.gameObject.tag == greenTowerTag && gameObject.tag != greenWizardTag)
+            {
+                ennemieTargetedTower = collision.gameObject.GetComponent<ManageTower>();
+                wizardState.inCombat = true;
+            }
+
         }
     }
 }

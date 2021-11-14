@@ -135,8 +135,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb513b36ac39a7c49a6a0bce4174ef8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lifePoint: 100
   ignoreObject: {fileID: 0}
-  towerHide: {fileID: 0}
+  blueTowerTag: Blue Side Tower
+  greenTowerTag: Green Side Tower
+  damage: 20
+  ennemieTargeted: {fileID: 0}
+  ennemieTargetedTower: {fileID: 0}
 --- !u!114 &7720922071275749715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,4 +154,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3851dc790fa5ece4ea15c3d6616eca5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  towerManager: {fileID: 0}
   inCombat: 0
