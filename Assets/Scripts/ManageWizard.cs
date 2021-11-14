@@ -54,11 +54,7 @@ public class ManageWizard : MonoBehaviour
 
         if (ennemieTargeted != null)
         {
-            ennemieTargeted.lifePoint -= damage;
-            if (lifePoint < 0)
-            {
-                lifePoint = 0;
-            }
+            ennemieTargeted.ApplyDamage(damage);
         }
         else if (ennemieTargetedTower != null)
         {
