@@ -33,16 +33,29 @@ public class TowerManager : MonoBehaviour
     {
         if (color == BLUE)
         {
-            int index = Random.Range(0, blueTowers.Length);
-            return blueTowers[index].transform.position;
+            int index = Random.Range(0, getActiveTowerArray(blueTowers).Count);
+            return getActiveTowerArray(blueTowers)[index].transform.position;
             
         }
         else if(color == GREEN)
         {
-            int index = Random.Range(0, greenTowers.Length - 1);
-            return greenTowers[index].transform.position;
+            int index = Random.Range(0, getActiveTowerArray(greenTowers).Count);
+            return getActiveTowerArray(greenTowers)[index].transform.position;
         }
         return new Vector2();
+    }
+
+    private List<GameObject> getActiveTowerArray(GameObject[] towerArray)
+    {
+        List<GameObject> newList = new List<GameObject>();
+        for(int i = 0; i < towerArray.Length; i++)
+        {
+            if (towerArray[i].activeInHierarchy)
+            {
+                newList.Add(towerArray[i]);
+            }
+        }
+        return newList;
     }
 
     public GameObject getClosestAlliedActiveTower(string wizardTag, Transform position)
