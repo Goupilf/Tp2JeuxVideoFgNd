@@ -6,9 +6,17 @@ public class WizardStateHide : WizardState
 {
     private const float REGEN_NORMALY = 1.0f;
     private const float REGEN_TWICE_MORE_FAST = 0.5f;
+    private float battleClock = 0f;
+    private float timeBetweenAttacks = 2f;
     public override void Battle()
     {
-        manageWizard.AttackEnnemiTargeted(manageWizard.damage);
+        if (battleClock >= timeBetweenAttacks)
+        {
+            battleClock = 0;
+            manageWizard.AttackEnnemiTargeted(manageWizard.damage);
+
+        }
+        battleClock += Time.deltaTime;
     }
 
     public override void ManageStateChange()
