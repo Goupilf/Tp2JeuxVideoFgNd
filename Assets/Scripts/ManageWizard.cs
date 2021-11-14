@@ -14,9 +14,12 @@ public class ManageWizard : MonoBehaviour
     public string blueTowerTag = "Blue Side Tower";
     public string greenTowerTag = "Green Side Tower";
     public int damage = 20;
+    private const int minDamage = 10;
+    private const int maxDamage = 20;
     private float regenClock = 0f;
     [SerializeField] private ManageWizard ennemieTargeted;
     [SerializeField] private ManageTower ennemieTargetedTower;
+    public int killCount = 0;
 
     public enum WizardStateToSwitch { Flee, Hide, Safety, Fearless, Normal , Disable};
 
@@ -55,6 +58,10 @@ public class ManageWizard : MonoBehaviour
         if (ennemieTargeted != null)
         {
             ennemieTargeted.ApplyDamage(damage);
+            if (ennemieTargeted.GetLifePoint() == 0)
+            {
+                killCount++;
+            };
         }
         else if (ennemieTargetedTower != null)
         {
@@ -126,8 +133,13 @@ public class ManageWizard : MonoBehaviour
         return ignoreObjectPosition;
     }
 
+
     public void SetIgnoreObjectPosition(Vector2 ignoreObject) {
         this.ignoreObjectPosition = ignoreObject;
+    }
+    public void randomizeDamage()
+    {
+        damage = Random.Range(minDamage, maxDamage);
     }
 
 

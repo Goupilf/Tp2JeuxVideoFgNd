@@ -12,6 +12,7 @@ public class WizardStateHide : WizardState
     {
         if (battleClock >= timeBetweenAttacks)
         {
+            manageWizard.randomizeDamage();
             battleClock = 0;
             manageWizard.AttackEnnemiTargeted(manageWizard.damage);
 

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class WizardStateNormal : WizardState
 {
+    private const float REGEN_NORMALY = 1.0f;
     private const int LIFE_POINT_TO_FLEE = 25;
     private float moveSpeed = 1f;
-    private const float REGEN_NORMALY = 1.0f;
     private float battleClock = 0f;
     private float timeBetweenAttacks = 2f;
 
@@ -15,6 +15,7 @@ public class WizardStateNormal : WizardState
     {
         if (battleClock >= timeBetweenAttacks)
         {
+            manageWizard.randomizeDamage();
             battleClock = 0;
             manageWizard.AttackEnnemiTargeted(manageWizard.damage);
             
@@ -30,7 +31,9 @@ public class WizardStateNormal : WizardState
         {
             manageWizard.ChangeWizardState(ManageWizard.WizardStateToSwitch.Flee);
         }
-        //if(killNumber >= 5)
+        if (manageWizard.killCount >= 3) {
+            manageWizard.ChangeWizardState(ManageWizard.WizardStateToSwitch.Fearless);
+        }
         //changeState -> Fearless
     }
 
