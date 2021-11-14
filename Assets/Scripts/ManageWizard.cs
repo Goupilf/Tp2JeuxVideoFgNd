@@ -9,13 +9,13 @@ public class ManageWizard : MonoBehaviour
     private string greenWizardTag = "Green Wizard";
     [SerializeField] private int lifePoint = STARTING_LIFE;
     private WizardState wizardState;
-    public Vector2 ignoreObjectPosition;
+    private Vector2 ignoreObjectPosition;
     private GameObject towerHide;
-    public string blueTowerTag = "Blue Side Tower";
-    public string greenTowerTag = "Green Side Tower";
     public int damage = 20;
     private const int minDamage = 10;
     private const int maxDamage = 20;
+    private const string BLUE_TOWER_TAG = "Blue Side Tower";
+    private const string GREEN_TOWER_TAG = "Green Side Tower";
     private float regenClock = 0f;
     [SerializeField] private ManageWizard ennemieTargeted;
     [SerializeField] private ManageTower ennemieTargetedTower;
@@ -158,7 +158,7 @@ public class ManageWizard : MonoBehaviour
 
         }
         
-        else if (collision.gameObject.tag == blueTowerTag && gameObject.tag == greenWizardTag)//green wizard entre en collision avec blue tower
+        else if (collision.gameObject.tag == BLUE_TOWER_TAG && gameObject.tag == greenWizardTag)//green wizard entre en collision avec blue tower
         {
             wizardState.inCombat = true;
             if (ennemieTargeted == null)
@@ -175,7 +175,7 @@ public class ManageWizard : MonoBehaviour
                 ennemieTargeted = collision.gameObject.GetComponent<ManageWizard>();
             }
         }
-        else if (collision.gameObject.tag == greenTowerTag && gameObject.tag == blueWizardTag)//blue wizard entre en collision avec green tower
+        else if (collision.gameObject.tag == GREEN_TOWER_TAG && gameObject.tag == blueWizardTag)//blue wizard entre en collision avec green tower
         {
             wizardState.inCombat = true;
             if (ennemieTargeted == null)
@@ -206,7 +206,7 @@ public class ManageWizard : MonoBehaviour
         }
         if (ennemieTargetedTower == null)
         {
-            if (collision.gameObject.tag == blueTowerTag && gameObject.tag != blueWizardTag || collision.gameObject.tag == greenTowerTag && gameObject.tag != greenWizardTag)
+            if (collision.gameObject.tag == BLUE_TOWER_TAG && gameObject.tag != blueWizardTag || collision.gameObject.tag == GREEN_TOWER_TAG && gameObject.tag != greenWizardTag)
             {
                 ennemieTargetedTower = collision.gameObject.GetComponent<ManageTower>();
                 wizardState.inCombat = true;

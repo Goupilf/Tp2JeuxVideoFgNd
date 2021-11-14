@@ -9,7 +9,7 @@ public class WizardStateNormal : WizardState
     private float moveSpeed = 1f;
     private float battleClock = 0f;
     private float timeBetweenAttacks = 2f;
-
+    private const int NORMAL_DAMAGE = 20;
     
     public override void Battle()
     {
@@ -17,7 +17,7 @@ public class WizardStateNormal : WizardState
         {
             manageWizard.randomizeDamage();
             battleClock = 0;
-            manageWizard.AttackEnnemiTargeted(manageWizard.damage);
+            manageWizard.AttackEnnemiTargeted(NORMAL_DAMAGE);
             
         }
         battleClock += Time.deltaTime;

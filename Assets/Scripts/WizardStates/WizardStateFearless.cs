@@ -6,8 +6,19 @@ public class WizardStated : WizardState
 {
     private const float REGEN_NORMALY = 1.0f;
     private const int LIFE_POINT_TO_FLEE = 25;
+    private float battleClock = 0f;
+    private float timeBetweenAttacks = 2f;
+    private float moveSpeedFearless = 2f;
     public override void Battle()
     {
+        if (battleClock >= timeBetweenAttacks)
+        {
+            manageWizard.randomizeDamage();
+            battleClock = 0;
+            manageWizard.AttackEnnemiTargeted(manageWizard.damage);
+
+        }
+        battleClock += Time.deltaTime;
     }
 
     public override void Init()
@@ -24,6 +35,11 @@ public class WizardStated : WizardState
 
     public override void MoveToward()
     {
+        GameObject closestTower = towerManager.getClosestEnemyActiveTower(gameObject.tag, transform);
+        if (inCombat == false)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, closestTower.transform.position, moveSpeedFearless * Time.deltaTime);
+        }
     }
 
     // Start is called before the first frame update

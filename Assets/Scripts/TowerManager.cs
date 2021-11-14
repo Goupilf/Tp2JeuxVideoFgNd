@@ -9,17 +9,17 @@ public class TowerManager : MonoBehaviour
     private const int BLUE = 1;
     private GameObject[] blueTowers;
     private GameObject[] greenTowers;
-    public string blueTowerTag = "Blue Side Tower";
-    public string greenTowerTag = "Green Side Tower";
-    public string blueWizardTag = "Blue Wizard";
-    public string greenWizardTag = "Green Wizard";
+    private const string BLUE_TOWER_TAG = "Blue Side Tower";
+    private const string GREEN_TOWER_TAG = "Green Side Tower";
+    public const string BLUE_WIZARD_TAG = "Blue Wizard";
+    public const string GREEN_WIZARD_TAG = "Green Wizard";
     private GameObject gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        blueTowers = GameObject.FindGameObjectsWithTag(blueTowerTag);
-        greenTowers = GameObject.FindGameObjectsWithTag(greenTowerTag);
+        blueTowers = GameObject.FindGameObjectsWithTag(BLUE_TOWER_TAG);
+        greenTowers = GameObject.FindGameObjectsWithTag(GREEN_TOWER_TAG);
         gameManager = GameObject.Find("GameManager");
     }
 
@@ -63,11 +63,11 @@ public class TowerManager : MonoBehaviour
         GameObject[] list ;
         list = blueTowers; //
 
-        if (wizardTag == blueWizardTag)
+        if (wizardTag == BLUE_WIZARD_TAG)
         {
             list = blueTowers;
         }
-        else if (wizardTag == greenWizardTag)
+        else if (wizardTag == GREEN_WIZARD_TAG)
         {
             list = greenTowers;
         }
@@ -92,11 +92,11 @@ public class TowerManager : MonoBehaviour
         GameObject[] list;
         list = blueTowers; //
 
-        if (wizardTag == blueWizardTag)
+        if (wizardTag == BLUE_WIZARD_TAG)
         {
             list = greenTowers;
         }
-        else if (wizardTag == greenWizardTag)
+        else if (wizardTag == GREEN_WIZARD_TAG)
         {
             list = blueTowers;
         }
