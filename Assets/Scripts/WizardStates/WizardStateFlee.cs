@@ -11,10 +11,11 @@ public class WizardStateFlee : WizardState
     private string greenTowerTag = "Green Side Tower";
     private float speed = 0f;
     private const float REGEN_NORMALY = 1.0f;
+    private Vector2 closestObjectPosition;
     // Start is called before the first frame update
     void Start()
     {
-        speed = 10f;
+        speed = 3f;
         if (tag == blueWizardTag)
         {
             allyTowerTag = blueTowerTag;
@@ -23,6 +24,7 @@ public class WizardStateFlee : WizardState
         {
             allyTowerTag = greenTowerTag;
         }
+        closestObjectPosition = FindTarget();
     }
 
     // Update is called once per frame
@@ -30,12 +32,12 @@ public class WizardStateFlee : WizardState
     {
         MoveToward();
         manageWizard.RegenLifePoint(REGEN_NORMALY);
+        ManageStateChange();
     }
 
     public override void MoveToward()
     {
-        GameObject closestObject = FindTarget();
-        transform.position = Vector3.MoveTowards(transform.position, closestObject.transform.position, speed) * Time.deltaTime;
+        transform.position = Vector3.MoveTowards(transform.position, closestObjectPosition, speed * Time.deltaTime);
     }
 
     public override void Battle()
@@ -45,52 +47,47 @@ public class WizardStateFlee : WizardState
 
     public override void ManageStateChange()
     {
-        //Changement d'état fait à la collision
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject!= manageWizard.GetIgnoreObject())
+        if(this.gameObject.transform.position == new Vector3(closestObjectPosition.x,closestObjectPosition.y, 0))
         {
-            if(collision.gameObject.tag == "Forest")
-            {
-                manageWizard.SetIgnoreObject(collision.gameObject);
-                manageWizard.ChangeWizardState(ManageWizard.WizardStateToSwitch.Hide);
-            } else if(collision.gameObject.tag == allyTowerTag)
-            {
-                manageWizard.SetIgnoreObject(collision.gameObject);
-                manageWizard.ChangeWizardState(ManageWizard.WizardStateToSwitch.Safety);
-            }
+            manageWizard.SetIgnoreObjectPosition(closestObjectPosition);
+            manageWizard.ChangeWizardState(ManageWizard.WizardStateToSwitch.Hide);
         }
-        
     }
 
-    private GameObject findTheMostNearbyActif(GameObject[] gameObjectArray)
+    private Vector2 findTheMostNearbyActifPosition(GameObject[] gameObjectArray)
     {
-        float dist = 0;
-        GameObject closestObject = new GameObject();
+        Vector2  nearestPosition= new Vector2();
+        float dist = 10;
         for (int i = 0; i < gameObjectArray.Length; i++)
         {
             float tempdist = Vector3.Distance(this.transform.position, gameObjectArray[i].transform.position);
-            if (tempdist < dist && gameObjectArray[i].activeInHierarchy && gameObjectArray[i]!= manageWizard.GetIgnoreObject())
+            
+            if (tempdist < dist && gameObjectArray[i].activeInHierarchy && gameObjectArray[i].transform.position!=new Vector3(manageWizard.GetIgnoreObject().x, manageWizard.GetIgnoreObject().y,0))
             {
                 dist = tempdist;
-                closestObject = gameObjectArray[i];
+                nearestPosition = gameObjectArray[i].transform.position;
             }
         }
-        return closestObject;
+        return nearestPosition;
     }
 
-    private GameObject FindTarget()
+    private Vector2 FindTarget()
     {
         GameObject[] nearbyTrees = GameObject.FindGameObjectsWithTag("Forest");
-        GameObject mostNearbyTree = findTheMostNearbyActif(nearbyTrees);
+        Vector2 mostNearbyTree = findTheMostNearbyActifPosition(nearbyTrees);
+        
         GameObject[] nearbyAllyTowers = GameObject.FindGameObjectsWithTag(allyTowerTag);
-        GameObject mostNearbyAllyTower = findTheMostNearbyActif(nearbyAllyTowers);
-        GameObject[] nearbyGameObject = new GameObject[2];
-        nearbyGameObject[0] = mostNearbyTree;
-        nearbyGameObject[1] = mostNearbyAllyTower;
-        return findTheMostNearbyActif(nearbyGameObject);
+        Vector2 mostNearbyAllyTower = findTheMostNearbyActifPosition(nearbyAllyTowers);
+
+        if(Vector2.Distance(this.transform.position, mostNearbyTree) > Vector2.Distance(this.transform.position, mostNearbyAllyTower))
+        {
+            return mostNearbyAllyTower;
+        }
+        else
+        {
+            return mostNearbyTree;
+        }
+        
     }
 
     public override void Init() // Le contenu de init peux être mis dans une fonction start. méthode inutile à mon avis.

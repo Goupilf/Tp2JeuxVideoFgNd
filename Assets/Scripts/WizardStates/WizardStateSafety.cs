@@ -16,7 +16,7 @@ public class WizardStateSafety : WizardState
         if(manageWizard.GetLifePoint() >= MAX_LIFE_POINT || !manageWizard.GetTowerHide().activeInHierarchy)
         {
             manageWizard.SetTowerHide(new GameObject());
-            manageWizard.SetIgnoreObject(new GameObject());
+            manageWizard.SetIgnoreObjectPosition(new Vector2());
             manageWizard.ChangeWizardState(ManageWizard.WizardStateToSwitch.Normal);
         }
     }

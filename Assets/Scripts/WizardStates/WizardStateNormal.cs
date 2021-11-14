@@ -55,6 +55,7 @@ public class WizardStateNormal : WizardState
         {
             Battle();
         }
+        ManageStateChange();
         manageWizard.RegenLifePoint(REGEN_NORMALY);
     }
 }

@@ -15,7 +15,7 @@ public class WizardStateHide : WizardState
     {
         if(manageWizard.GetLifePoint() >= 100 || inCombat && manageWizard.GetLifePoint() >=50)
         {
-            manageWizard.SetIgnoreObject(new GameObject());
+            manageWizard.SetIgnoreObjectPosition(new Vector2());
             manageWizard.ChangeWizardState(ManageWizard.WizardStateToSwitch.Normal);
         }
     }
