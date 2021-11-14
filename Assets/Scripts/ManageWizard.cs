@@ -29,7 +29,6 @@ public class ManageWizard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(damage);
         if(lifePoint == 0)
         {
             Die();
