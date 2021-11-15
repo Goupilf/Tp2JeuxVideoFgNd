@@ -21,6 +21,7 @@ public class ManageWizard : MonoBehaviour
     [SerializeField] private ManageTower ennemieTargetedTower;
     public int killCount = 0;
     public bool isFearless = false;
+    public bool isSafe = false;
 
     public enum WizardStateToSwitch { Flee, Hide, Safety, Fearless, Normal , Disable};
 
@@ -103,6 +104,11 @@ public class ManageWizard : MonoBehaviour
                     wizardState = gameObject.AddComponent<WizardStateFearless>() as WizardStateFearless;
                     break;
                 }
+            case WizardStateToSwitch.Normal:
+                {
+                    wizardState = gameObject.AddComponent<WizardStateNormal>() as WizardStateNormal;
+                    break;
+                }
             case WizardStateToSwitch.Disable:
                 {
                     wizardState = null;
@@ -149,9 +155,6 @@ public class ManageWizard : MonoBehaviour
         damage = Random.Range(minDamage, maxDamage);
     }
 
-
-    //wizardState.towerManager.blueTowerTag ne devrait pas exister. Si tu veux avoir accès au tag, place-le en contante dans ce même fichier
-    //Cette vérification de en combat ou non devrait être défini dans le state: lorsque je suis en état Sureté, je ne peux pas être en combat
    private void OnTriggerEnter2D(Collider2D collision) 
     {
 
@@ -159,8 +162,6 @@ public class ManageWizard : MonoBehaviour
         {
             if (isFearless)
             {
-                //Debug.Log(collision.gameObject.GetComponent<ManageWizard>().ennemieTargeted.gameObject);
-                //Debug.Log(this.gameObject);
                 if (collision.gameObject.GetComponent<ManageWizard>().ennemieTargeted == this) //si il est fearless et cibler par ennemi
                 {
                     setInCombatTrue();
@@ -169,7 +170,7 @@ public class ManageWizard : MonoBehaviour
 
                 //si pas cibler par ennemi entre pas en cbt avec
             }
-            else
+            else if (!collision.GetComponent<ManageWizard>().isSafe)
             {
 
                 setInCombatTrue();
@@ -197,7 +198,7 @@ public class ManageWizard : MonoBehaviour
 
                 //si pas cibler par ennemi entre pas en cbt avec
             }
-            else
+            else if (!collision.GetComponent<ManageWizard>().isSafe)
             {
 
                 setInCombatTrue();
@@ -257,7 +258,7 @@ public class ManageWizard : MonoBehaviour
 
                     //si pas cibler par ennemi entre pas en cbt avec
                 }
-                else
+                else if(!collision.GetComponent<ManageWizard>().isSafe) 
                 {
 
                     setInCombatTrue();

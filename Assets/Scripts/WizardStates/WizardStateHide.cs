@@ -8,7 +8,6 @@ public class WizardStateHide : WizardState
     private const float REGEN_TWICE_MORE_FAST = 0.5f;
     private float battleClock = 0f;
     private float timeBetweenAttacks = 2f;
-    private const int NORMAL_DAMAGE = 20;
     public override void Battle()
     {
         if (battleClock >= timeBetweenAttacks)
@@ -40,10 +39,6 @@ public class WizardStateHide : WizardState
     void Start()
     {
         
-    }
-    public override void Init()
-    {
-        //Ici ne fait rien, mais pour monter où il faudrait l'appeller si on en avait besoin
     }
 
     // Update is called once per frame

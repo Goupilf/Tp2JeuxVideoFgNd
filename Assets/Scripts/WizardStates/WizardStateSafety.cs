@@ -18,6 +18,7 @@ public class WizardStateSafety : WizardState
             manageWizard.SetTowerHide(new GameObject());
             manageWizard.SetIgnoreObjectPosition(new Vector2());
             manageWizard.ChangeWizardState(ManageWizard.WizardStateToSwitch.Normal);
+            gameObject.GetComponent<ManageWizard>().isSafe = false;
         }
     }
 
@@ -29,7 +30,7 @@ public class WizardStateSafety : WizardState
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameObject.GetComponent<ManageWizard>().isSafe = true;
     }
 
     // Update is called once per frame
@@ -37,9 +38,5 @@ public class WizardStateSafety : WizardState
     {
         manageWizard.RegenLifePoint(REGEN_THREE_TIME_FASTER);
         ManageStateChange();
-    }
-    public override void Init()
-    {
-        //Ici ne fait rien, mais pour monter où il faudrait l'appeller si on en avait besoin
     }
 }

@@ -21,10 +21,6 @@ public class WizardStateFearless : WizardState
         battleClock += Time.deltaTime;
     }
 
-    public override void Init()
-    {
-    }
-
     public override void ManageStateChange()
     {
         if (manageWizard.GetLifePoint() <= LIFE_POINT_TO_FLEE)

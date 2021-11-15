@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class TowerManager : MonoBehaviour
 {
-    private const int NB_TOWER_EACH_SIDE = 3;
     private const int GREEN = 0;
     private const int BLUE = 1;
     private GameObject[] blueTowers;

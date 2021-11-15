@@ -102,9 +102,4 @@ public class WizardStateFlee : WizardState
         }
         
     }
-
-    public override void Init() // Le contenu de init peux être mis dans une fonction start. méthode inutile à mon avis.
-    {
-        //Ici ne fait rien, mais pour monter où il faudrait l'appeller si on en avait besoin
-    }
 }

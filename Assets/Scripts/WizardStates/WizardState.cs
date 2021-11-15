@@ -23,8 +23,6 @@ public abstract class WizardState : MonoBehaviour
 
     public abstract void MoveToward();
 
-    public abstract void Init();
-
     public abstract void Battle();
 
     public abstract void ManageStateChange();
