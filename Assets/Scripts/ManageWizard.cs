@@ -247,8 +247,22 @@ public class ManageWizard : MonoBehaviour
         {
             if (collision.gameObject.tag == blueWizardTag && gameObject.tag != blueWizardTag && collision.gameObject.GetComponent<WizardStateSafety>() == null || collision.gameObject.tag == greenWizardTag && gameObject.tag != greenWizardTag && collision.gameObject.GetComponent<WizardStateSafety>() == null)
             {
-                ennemieTargeted = collision.gameObject.GetComponent<ManageWizard>();
-                wizardState.inCombat = true;
+                if (isFearless)
+                {
+                    if (collision.gameObject.GetComponent<ManageWizard>().ennemieTargeted == this) //si il est fearless et cibler par ennemi
+                    {
+                        setInCombatTrue();
+                        SetTargetedEnnemy(collision);
+                    }
+
+                    //si pas cibler par ennemi entre pas en cbt avec
+                }
+                else
+                {
+
+                    setInCombatTrue();
+                    SetTargetedEnnemy(collision);
+                }
             }
             
         }
@@ -256,8 +270,8 @@ public class ManageWizard : MonoBehaviour
         {
             if (collision.gameObject.tag == BLUE_TOWER_TAG && gameObject.tag != blueWizardTag || collision.gameObject.tag == GREEN_TOWER_TAG && gameObject.tag != greenWizardTag)
             {
-                ennemieTargetedTower = collision.gameObject.GetComponent<ManageTower>();
-                wizardState.inCombat = true;
+                SetTargetedEnnemy(collision);
+                setInCombatTrue();
             }
 
         }
